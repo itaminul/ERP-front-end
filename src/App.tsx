@@ -10,13 +10,15 @@ import Dahsbord from './components/layouts/Dashbord';
 import Aboutusform from './components/Aboutusform';
 import AboutIndex from './components/AboutIndex';
 import EditAboutus from './components/EditAboutus';
+import Login from './components/layouts/Login';
 
 function App() {
   return (
     <div className="App">
       {/* <TopNav /> */}
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Login />} />
+
         <Route path='/dahsboard' element={<Dahsbord />} />
         <Route path='/aboutindex' element={<AboutIndex />} />
         <Route path='/contact' element={<Contact />} />

@@ -1,10 +1,12 @@
+import LeftSidebar from "./LeftSidebar";
 import TopNav from "./TopNav";
 
 const Dahsbord = () => {
     return(
         <>
             Dashbord
-            <TopNav />
+            <LeftSidebar />
+            {/* <TopNav /> */}
         </>
     )
 }
