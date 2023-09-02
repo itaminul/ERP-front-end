@@ -11,6 +11,9 @@ import Aboutusform from './components/Aboutusform';
 import AboutIndex from './components/AboutIndex';
 import EditAboutus from './components/EditAboutus';
 import Login from './components/layouts/Login';
+import HrIndex from './components/pages/hr/HrIndex';
+import Index from './components/pages/hr/setup/department/DeptIndex';
+import InventoryDashboard from './components/pages/inventory/InventoryDashboard';
 
 function App() {
   return (
@@ -18,12 +21,15 @@ function App() {
       {/* <TopNav /> */}
       <Routes>
         <Route path='/' element={<Login />} />
-
         <Route path='/dahsboard' element={<Dahsbord />} />
         <Route path='/aboutindex' element={<AboutIndex />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/aboutusform' element={<About />} />
         <Route path='/editaboutus/:id' element={<EditAboutus />} />
+        <Route path='/hr-das-board-all-in-for-mation' element={<HrIndex />} />
+        <Route path='/de-part-ment-set-up-for-emp-info' element={<Index />} />
+        {/* inventory */}
+        <Route path='/inventory' element={<InventoryDashboard />} />
       </Routes>
     </div>
   );

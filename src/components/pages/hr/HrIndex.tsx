@@ -1,7 +1,9 @@
+import HrLeftSideBar from "../../layouts/HrLeftSideBar"
+
 const HrIndex = () => {
     return(
         <>
-        Hr Index
+       <HrLeftSideBar />
         </>
     )
 }
