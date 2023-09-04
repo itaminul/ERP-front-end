@@ -2,30 +2,32 @@ import { useState } from "react";
 import Modal from "../../../../../modal/Modal"
 import { useModal } from "../../../../../modal/useModal"
 import HrLeftSideBar from "../../../../layouts/HrLeftSideBar"
+import CreateDept from "./CreateDept";
 
 
 
 const DeptIndex = () => {
 
-
-    const [showModal, setShowModal] = useState<boolean>(false);
-
-    function toggleModal() {
+    const [showModal, setShowModal] = useState(false);
+    const toggleModal = () => {
         setShowModal(!showModal);
+    }
+    const onClose = () => {
+        setShowModal(false);
     }
 
     return (
         <>
             <HrLeftSideBar />
 
-            <div className="card">
-                <span>Toggle Card</span>
-                <button type="button" className="btn" onClick={toggleModal}>Open</button>
-            </div>
-            <Modal open={showModal} onClose={toggleModal}>
-                <div>
-                    Main Content goes here!
-                </div>
+            <button onClick={toggleModal}>Create</button>
+
+            <Modal open={showModal} onClose={onClose} title="Add New Department" modalSize="max-w-lg" modalPadding="px-96" closeButtonPadding="ml-6" toggle={function (): void {
+                throw new Error("Function not implemented.");
+            }} >
+
+               <CreateDept />
+
             </Modal>
 
             <div className="flex flex-col px-8">
