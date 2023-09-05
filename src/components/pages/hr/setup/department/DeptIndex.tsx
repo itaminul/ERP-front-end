@@ -26,7 +26,7 @@ const DeptIndex = () => {
                 throw new Error("Function not implemented.");
             }} >
 
-               <CreateDept />
+               <CreateDept onClose={onClose} children={undefined} />
 
             </Modal>
 
