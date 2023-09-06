@@ -4,19 +4,33 @@ import { useModal } from "../../../../../modal/useModal"
 import HrLeftSideBar from "../../../../layouts/HrLeftSideBar"
 import CreateDept from "./CreateDept";
 import { Link } from "react-router-dom";
-
-
+import EditDepartment from "./EditDepartment";
 
 const DeptIndex = () => {
     const accessToken = localStorage.getItem('accessToken');
 
     const [showModal, setShowModal] = useState(false);
+    const[showEditModal, setShowEditModal] = useState(false)
+
+    const[deptId, setDeptId] = useState(null)
+
     const toggleModal = () => {
         setShowModal(!showModal);
     }
+
+    const editModal = (event: any) => {
+        const id = event?.currentTarget.getAttribute('data-value');
+        setShowEditModal(!showEditModal)
+        setDeptId(id)
+    }
+
+    
     const onClose = () => {
         setShowModal(false);
+        setShowEditModal(false);
     }
+
+
     const [data, setData] = useState<any[]>([]);
     const [loading, setLoading] = useState(true)    
  
@@ -50,16 +64,22 @@ const DeptIndex = () => {
     if(loading) {
         return <div>Loading......</div>
     }
+
+    console.log("deptIddeptId", deptId)
     return (
         <>
             <HrLeftSideBar />
-
             <button onClick={toggleModal}>Create</button>
-
             <Modal open={showModal} onClose={onClose} title="Add New Department" modalSize="max-w-lg" modalPadding="px-96" closeButtonPadding="ml-6" toggle={function (): void {
                 throw new Error("Function not implemented.");
             }} >
                 <CreateDept onClose={onClose} children={undefined} />
+            </Modal>
+
+            <Modal open={showEditModal} onClose={onClose} title="Edit New Department" modalSize="max-w-lg" modalPadding="px-96" closeButtonPadding="ml-6" toggle={function (): void {
+                throw new Error("Function not implemented.");
+            }} >
+                <EditDepartment deptId={deptId} onClose={onClose} children={undefined} />
             </Modal>
 
             <div className="flex flex-col px-8">
@@ -92,10 +112,9 @@ const DeptIndex = () => {
                                             <td className="whitespace-nowrap px-6 py-4 font-medium">
                                                 {item.orgId}
                                             </td>
-                                            <td>
-                                                <Link to="/editDepartment">Edit</Link>
+                                            <td>            
+                                                <button data-value={item.id} onClick={editModal}> Edit</button>
                                             </td>
-
                                         </tr>
                                     ))}
                                 </tbody>

@@ -15,6 +15,7 @@ import HrIndex from './components/pages/hr/HrIndex';
 import Index from './components/pages/hr/setup/department/DeptIndex';
 import InventoryDashboard from './components/pages/inventory/InventoryDashboard';
 import DrawerSideBar from './components/layouts/DrawerSidebar';
+import EditDepartment from './components/pages/hr/setup/department/EditDepartment';
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
         {/* inventory */}
         <Route path='/inventory' element={<InventoryDashboard />} />
         <Route path='/drawerSideBar' element={<DrawerSideBar />} />
+        <Route path='/editDepartment' element={<EditDepartment />} />
+        
         
       </Routes>
     </div>
