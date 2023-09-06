@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useCallback, useDebugValue, useEffect, useState } from "react";
 import Modal from "../../../../../modal/Modal"
 import { useModal } from "../../../../../modal/useModal"
 import HrLeftSideBar from "../../../../layouts/HrLeftSideBar"
 import CreateDept from "./CreateDept";
+import { Link } from "react-router-dom";
 
 
 
 const DeptIndex = () => {
+    const accessToken = localStorage.getItem('accessToken');
 
     const [showModal, setShowModal] = useState(false);
     const toggleModal = () => {
@@ -15,7 +17,39 @@ const DeptIndex = () => {
     const onClose = () => {
         setShowModal(false);
     }
+    const [data, setData] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true)    
+ 
+    const featchData = useCallback(async () => {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/department`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${accessToken}`
+                }
 
+            })
+           if(response.ok) {
+            const jsonData = await response.json();
+            const showResult = jsonData.results;
+            setData(showResult)
+            setLoading(false)
+           }
+            ///  console.log("json  data", jsonData)
+        } catch (error) {
+            console.log("error", error)
+
+        }
+    }, [])
+
+    useEffect(() => {
+        featchData()
+    }, [])
+
+    if(loading) {
+        return <div>Loading......</div>
+    }
     return (
         <>
             <HrLeftSideBar />
@@ -25,9 +59,7 @@ const DeptIndex = () => {
             <Modal open={showModal} onClose={onClose} title="Add New Department" modalSize="max-w-lg" modalPadding="px-96" closeButtonPadding="ml-6" toggle={function (): void {
                 throw new Error("Function not implemented.");
             }} >
-
-               <CreateDept onClose={onClose} children={undefined} />
-
+                <CreateDept onClose={onClose} children={undefined} />
             </Modal>
 
             <div className="flex flex-col px-8">
@@ -38,30 +70,34 @@ const DeptIndex = () => {
                                 <thead className="border-b font-medium dark:border-neutral-500">
                                     <tr>
                                         <th scope="col" className="px-6 py-4">#</th>
-                                        <th scope="col" className="px-6 py-4">First</th>
-                                        <th scope="col" className="px-6 py-4">Last</th>
-                                        <th scope="col" className="px-6 py-4">Handle</th>
+                                        <th scope="col" className="px-6 py-4">Name</th>
+                                        <th scope="col" className="px-6 py-4">Description</th>
+                                        <th scope="col" className="px-6 py-4">Org</th>
+                                        <th scope="col" className="px-6 py-4">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr className="border-b dark:border-neutral-500">
-                                        <td className="whitespace-nowrap px-6 py-4 font-medium">1</td>
-                                        <td className="whitespace-nowrap px-6 py-4">Mark</td>
-                                        <td className="whitespace-nowrap px-6 py-4">Otto</td>
-                                        <td className="whitespace-nowrap px-6 py-4">@mdo</td>
-                                    </tr>
-                                    <tr className="border-b dark:border-neutral-500">
-                                        <td className="whitespace-nowrap px-6 py-4 font-medium">2</td>
-                                        <td className="whitespace-nowrap px-6 py-4">Jacob</td>
-                                        <td className="whitespace-nowrap px-6 py-4">Thornton</td>
-                                        <td className="whitespace-nowrap px-6 py-4">@fat</td>
-                                    </tr>
-                                    <tr className="border-b dark:border-neutral-500">
-                                        <td className="whitespace-nowrap px-6 py-4 font-medium">3</td>
-                                        <td className="whitespace-nowrap px-6 py-4">Larry</td>
-                                        <td className="whitespace-nowrap px-6 py-4">Wild</td>
-                                        <td className="whitespace-nowrap px-6 py-4">@twitter</td>
-                                    </tr>
+                                    {data?.map((item) => (
+                                        <tr className="border-b dark:border-neutral-500">
+                                            <td className="whitespace-nowrap px-6 py-4 font-medium">
+                                                {item.id}
+                                            </td>
+                                            <td className="whitespace-nowrap px-6 py-4 font-medium">
+                                                {item.departmentName}
+                                            </td>
+                                            <td className="whitespace-nowrap px-6 py-4 font-medium">
+
+                                                {item.departmentDes}
+                                            </td>
+                                            <td className="whitespace-nowrap px-6 py-4 font-medium">
+                                                {item.orgId}
+                                            </td>
+                                            <td>
+                                                <Link to="/editDepartment">Edit</Link>
+                                            </td>
+
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>

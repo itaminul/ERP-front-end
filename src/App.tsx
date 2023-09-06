@@ -14,6 +14,7 @@ import Login from './components/layouts/Login';
 import HrIndex from './components/pages/hr/HrIndex';
 import Index from './components/pages/hr/setup/department/DeptIndex';
 import InventoryDashboard from './components/pages/inventory/InventoryDashboard';
+import DrawerSideBar from './components/layouts/DrawerSidebar';
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
         <Route path='/de-part-ment-set-up-for-emp-info' element={<Index />} />
         {/* inventory */}
         <Route path='/inventory' element={<InventoryDashboard />} />
+        <Route path='/drawerSideBar' element={<DrawerSideBar />} />
+        
       </Routes>
     </div>
   );
