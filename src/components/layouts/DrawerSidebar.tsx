@@ -1,13 +1,31 @@
 import { useState } from "react";
+import { useSelector , useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { decrement, increment } from "../../redux/features/counterSlice";
+import { RootState } from "../../redux/store/store";
 const DrawerSideBar = () => {
   const [open, setOpen] = useState(true);
   const [showSidebar, setShowSidebar] = useState(false);
   const [showDropDownMenu, setShowDropDownMenu] = useState(false);
-
+  const count = useSelector((state: RootState) => state.counter.value)
+  const dispatch = useDispatch()
   return (
     <>
+     <div>
+        <button
+          aria-label="Increment value"
+          onClick={() => dispatch(increment())}
+        >
+          Increment
+        </button>
+        <span>{count}</span>
+        <button
+          aria-label="Decrement value"
+          onClick={() => dispatch(decrement())}
+        >
+          Decrement
+        </button>
+      </div>
       <div
         className="flex fixed top-0  z-40 h-screen bg-white  dark:bg-gray-800"
         aria-labelledby="drawer-navigation-label"
