@@ -1,11 +1,9 @@
 const Aboutusform = () => {
+  return (
+    <>
+      <div>About us form</div>
+    </>
+  );
+};
 
-    return(
-        <>
-            <div>About us form</div>
-        </>
-    )
-
-}
-
-export default Aboutusform
+export default Aboutusform;

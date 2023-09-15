@@ -1,11 +1,11 @@
 import Login from "./layouts/Login";
 
 const Home = () => {
-    return(
-        <>
-            <Login />
-        </>
-    )
-}
+  return (
+    <>
+      <Login />
+    </>
+  );
+};
 
 export default Home;

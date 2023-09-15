@@ -1,0 +1,13 @@
+{
+  "extends": ["react-app", "react-app/jest", "prettier"],
+  "rules": {
+     // enable additional rules
+    //  "no-tabs": ["error", {"allowIndentationTabs": true}],
+//  "indent":  ["error", 2, { "MemberExpression": 1 }],
+//  "linebreak-style": ["error", "unix"],
+//  "quotes": ["error", "double"],
+//  "semi": ["error", "always"]
+//  "editor.codeActionsOnSave": { "source.fixAll.eslint": true},
+// "eslint.alwaysShowStatus": true
+  }
+}

@@ -1,11 +1,11 @@
-import HrLeftSideBar from "../../layouts/HrLeftSideBar"
+import HrLeftSideBar from "../../layouts/HrLeftSideBar";
 
 const HrIndex = () => {
-    return(
-        <>
-       <HrLeftSideBar />
-        </>
-    )
-}
+  return (
+    <>
+      <HrLeftSideBar />
+    </>
+  );
+};
 
-export default HrIndex
+export default HrIndex;
