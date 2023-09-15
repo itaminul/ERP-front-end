@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       {/* <TopNav /> */}
       <Routes>
-        <Route path='/' element={<Login />} />
+        {/* <Route path='/' element={<Login />} /> */}
         <Route path='/dahsboard' element={<Dahsbord />} />
         <Route path='/aboutindex' element={<AboutIndex />} />
         <Route path='/contact' element={<Contact />} />
