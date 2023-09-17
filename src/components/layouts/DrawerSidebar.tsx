@@ -1,47 +1,33 @@
 import { useState } from "react";
 import { useSelector , useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { decrement, increment } from "../../redux/features/counterSlice";
 import { RootState } from "../../redux/store/store";
+import { toggleMenu } from "../../redux/features/menuSlice";
 const DrawerSideBar = () => {
-  const [open, setOpen] = useState(true);
-  const [showSidebar, setShowSidebar] = useState(false);
   const [showDropDownMenu, setShowDropDownMenu] = useState(false);
-  const count = useSelector((state: RootState) => state.counter.value)
+  const isOpen= useSelector((state: RootState) => state.menu.isOpen)
   const dispatch = useDispatch()
+
+  const toggleMenuHandler = () => {
+    dispatch(toggleMenu());
+  }
   return (
     <>
-     <div>
-        <button
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
-          Increment
-        </button>
-        <span>{count}</span>
-        <button
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
-          Decrement
-        </button>
-      </div>
       <div
         className="flex fixed top-0  z-40 h-screen bg-white  dark:bg-gray-800"
         aria-labelledby="drawer-navigation-label"
       >
         <div
-          className={`${
-            open ? "w-60" : "w-16"
-          } duration-300 h-screen pt-0  relative`}
+          className={`${isOpen ? "w-60" : "w-16"} duration-300 h-screen pt-0  relative`}
         >
           <img
             src="arrow-icon.webp"
             className={`absolute cursor-pointer -right-3 top-4 w-10 border-2 border-gray-900 rounded-full ${
-              !open && "rotate-180"
+              !isOpen && "rotate-180"
             }`}
-            onClick={() => setOpen(!open)}
+            onClick={toggleMenuHandler}
           />
+          {isOpen && (
           <div>
             <div
               className={`py-4 overflow-y-auto bg-gray-100 dark:hover:bg-gray-700`}
@@ -119,12 +105,7 @@ const DrawerSideBar = () => {
                       </Link>
                     </li>
                     <li className={`${!open && "hidden"}`}>
-                      <a
-                        href="#"
-                        className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                      >
-                        Billing
-                      </a>
+                    <Link to="/billing">Billing</Link>
                     </li>
                     <li className={`${!open && "hidden"}`}>
                       <a
@@ -139,6 +120,7 @@ const DrawerSideBar = () => {
               </ul>
             </div>
           </div>
+          )}
         </div>
       </div>
     </>
