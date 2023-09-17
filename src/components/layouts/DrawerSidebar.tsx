@@ -18,7 +18,7 @@ const DrawerSideBar = () => {
         aria-labelledby="drawer-navigation-label"
       >
         <div
-          className={`${isOpen ? "w-60" : "w-16"} duration-300 h-screen pt-0  relative`}
+          className={`${isOpen ? "w-72" : "w-16"} duration-300 h-screen pt-0  relative`}
         >
           <img
             src="arrow-icon.webp"
