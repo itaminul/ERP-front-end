@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import TopNav from "./components/layouts/TopNav";
-import { Route, Routes } from "react-router-dom";
+import { Route, RouterProvider, Routes, createBrowserRouter } from "react-router-dom";
 import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
@@ -18,27 +18,27 @@ import InventoryDashboard from "./components/pages/inventory/InventoryDashboard"
 import DrawerSideBar from "./components/layouts/DrawerSidebar";
 import EditDepartment from "./components/pages/hr/setup/department/EditDepartment";
 import Billing from "./components/Billing";
+const Router = createBrowserRouter([
+  { path: "/dashbord", element: <Dahsbord />},
+  { path: "/aboutindex", element: <AboutIndex />},
+  { path: "/contact", element: <Contact />},
+  { path: "/aboutusform", element: <About />},
+  { path: "/editaboutus/:id", element: <EditAboutus />},
+  { path: "/inventory", element: <InventoryDashboard />},
+  { path: "/hr", element: <HrIndex />},
+  { path: "/de-part-ment-set-up-for-emp-info", element: <Index />},
+  { path: "/drawerSideBar", element: <DrawerSideBar />},
+  { path: "/billing", element: <Billing />},
+  { path: "/editDepartment", element: <EditDepartment />},
+  
 
+])
 
 function App() {
 return (
     <div className="App">
       {/* <TopNav /> */}
-      <Routes>
-        {/* <Route path='/' element={<Login />} /> */}
-        <Route path="/dahsboard" element={<Dahsbord />} />
-        <Route path="/aboutindex" element={<AboutIndex />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/aboutusform" element={<About />} />
-        <Route path="/editaboutus/:id" element={<EditAboutus />} />
-        <Route path="/hr-das-board-all-in-for-mation" element={<HrIndex />} />
-        <Route path="/de-part-ment-set-up-for-emp-info" element={<Index />} />
-        {/* inventory */}
-        <Route path="/inventory" element={<InventoryDashboard />} />
-        <Route path="/drawerSideBar" element={<DrawerSideBar />} />
-        <Route path="/editDepartment" element={<EditDepartment />} />
-        <Route path="/billing" element={<Billing />} />
-      </Routes>
+      <RouterProvider router={Router} />
     </div>
   );
 }
