@@ -19,6 +19,7 @@ import DrawerSideBar from "./components/layouts/DrawerSidebar";
 import EditDepartment from "./components/pages/hr/setup/department/EditDepartment";
 import Billing from "./components/Billing";
 import NotFound from "./NotFound";
+import SupplierIndex from "./components/pages/inventory/setup/supplier/SupplierIndex";
 const Router = createBrowserRouter([
   { path: "/dashboard", element: <Dahsbord />},
   { path: "/aboutindex", element: <AboutIndex />},
@@ -32,6 +33,7 @@ const Router = createBrowserRouter([
   { path: "/editDepartment", element: <EditDepartment />},
   //inventory route
   { path: "/inventory", element: <InventoryDashboard />},
+  { path: "/supplier-setup", element: <SupplierIndex />},
   //not found route
   { path: "*", element: <NotFound />},
   
