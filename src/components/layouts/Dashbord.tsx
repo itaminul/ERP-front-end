@@ -10,7 +10,7 @@ const Dahsbord = () => {
       Dashbord
       {/* <LeftSidebar /> */}
       {/* <TopNav /> */}
-      <div className="grid-cols-1 sm:grid md:grid-cols-3 mt-8 ">
+      <div className="grid-cols-1 sm:grid md:grid-cols-3 mt-16 ">
         <Link to="/hr">
           <div className="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
             <div className="p-6">
