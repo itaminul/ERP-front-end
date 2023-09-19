@@ -1,6 +1,7 @@
 const SupplierIndex = () => {
     return(
         <>
+        
         Supplier Setup
         </>
     )
