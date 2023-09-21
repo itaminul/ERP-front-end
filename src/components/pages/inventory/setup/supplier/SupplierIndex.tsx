@@ -1,57 +1,76 @@
-import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import InventoryLeftSideBar from "../../../../layouts/InventoryLeftSideBar"
-import { RootState } from "../../../../../redux/store/store";
+import { useSelector } from "react-redux"
+import { RootState } from "../../../../../redux/store/store"
 
 const SupplierIndex = () => {
-  const isOpen = useSelector((state: RootState) => state.menu.isOpen)
-  const dispatch = useDispatch();
-  return (
-    <>
-      <div>
+    const isOpen = useSelector((state: RootState) => state.menu.isOpen)
+    return (
+        <>
 
-        <InventoryLeftSideBar />
+            <div>
+                <div className="">
+                    <div className="w-1/8">
+                        <InventoryLeftSideBar />
+                    </div>
+                    <div className={`${isOpen ? "ml-56 w-3/4" : "ml-6 w-96"}`}>
+                    {/* <div className="p-10 w-full ..."> */}
+                        <table className="w-full text-sm text-gray-500">
+                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" className="px-6 py-3">
+                                        Middle Name
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Full Name
+                                    </th>
 
-      </div>
-      <div className={`${isOpen ? "ml-80" : "ml-32"}`}>
-        <nav className="flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
-          <ol className="inline-flex items-center space-x-1 md:space-x-3">
-            <li className="inline-flex items-center">
-              <a href="#" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                <svg className="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-                </svg>
-                Home
-              </a>
-            </li>
-            <li>
-              <div className="flex items-center">
-                <svg className="w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                </svg>
-                <a href="#" className="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">Setup</a>
-              </div>
-            </li>
-            <li aria-current="page">
-              <div className="flex items-center">
-                <svg className="w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                </svg>
-                <span className="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Contact</span>
-              </div>
-            </li>
-          </ol>
-        </nav>
+                                    <th scope="col" className="px-6 py-3">
+                                        Phone
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Dept Id ID
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Image
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-      </div>
+                                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <th
+                                        scope="row"
+                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                    >
+                                        aa
+                                    </th>
+                                    <td className="px-6 py-4">a</td>
+                                    <td className="px-6 py-4">b</td>
+                                    <td className="px-6 py-4">c</td>
+                                    <td className="px-6 py-4">d</td>
+                                    <td className="px-6 py-4">
+                                        <Link to={`/editaboutus/1`}>
+                                            <button
+                                                type="button"
+                                                className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                                            >
+                                                Edit
+                                            </button>
+                                        </Link>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-      <div className={`${isOpen ? "ml-10" : "-ml-96"} mt-8`}>
-        contactfffffffffffffffffffffffff
-        oooooooooooo
-        ffffffddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbbbbttttttttttttttt
-
-      </div>
-    </>
-  )
+        </>
+    )
 }
 
 export default SupplierIndex
