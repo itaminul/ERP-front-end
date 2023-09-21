@@ -40,7 +40,7 @@ const Contact = () => {
     </div>
     <div className={`${isOpen ? "-ml-26" : "-ms-96"}`}>
 
-      <div className="mt-6">
+      <div className="mt-8">
         contactfffffffffffffffffffffffff
         oooooooooooo
         ffffffddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbbbbttttttttttttttt
