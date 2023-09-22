@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 
@@ -51,8 +51,29 @@ const data: DataType[] = [
   },
 ];
 
-const SupplierTable: React.FC = () =>
- <Table style={{ width: "90%"}} columns={columns} dataSource={data} scroll={{ x: 1300 }} />;
+const accessToken = localStorage.getItem('accessToken');
+const SupplierTable: React.FC = () => {
+  const[data, setData] = useState<DataType[]>([])
+
+  
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/suppliers`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json', // Depending on your API requirements
+      }
+    })
+    .then(response => response.json())
+    .then(data => setData(data))
+    .catch(error => console.error('Error fetching data:', error));
+  }, []);
+  return(
+    <>
+      <Table style={{ width: "90%"}} columns={columns} dataSource={data} scroll={{ x: 1300 }} />;
+    </>
+  )
+}
 
 
 export default SupplierTable;
