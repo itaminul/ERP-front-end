@@ -6,7 +6,6 @@ import SubMenu from 'antd/es/menu/SubMenu';
 import { Link } from 'react-router-dom';
 import Title from 'antd/es/typography/Title';
 import { Footer } from 'antd/es/layout/layout';
-import AppRoutes from '../router/AppRoutes';
 
 const { Header, Content, Sider } = Layout;
 const menu = [
@@ -49,12 +48,12 @@ const Sidebar: React.FC = () => {
   }
   return (
     <Layout>
-      <Header>
-        <Title style={{ color: "white" }}>ERP LOGO</Title>
+      <Header style={{ display: 'flex', alignItems: 'center' }}>
+        <div className="demo-logo" />
+        <Title style={{ color: 'white' }} level={3}>ERP</Title>
       </Header>
-
       <Layout>
-        <Sider width={200} style={{ minHeight: "100%" }} theme="dark">
+        <Sider width={200} theme="dark">
           <Menu mode="inline"
             theme="dark"
             defaultSelectedKeys={['Daashbord']}
@@ -64,28 +63,28 @@ const Sidebar: React.FC = () => {
             </Menu.Item>
             <SubMenu key="sub1" title="Setup">
               <Menu.Item key="1">
-                <Link to="/supplier">Supplier</Link>
+                <Link to="/sidecontent">Side Content</Link>
               </Menu.Item>
               <Menu.Item key="2">
-                <Link to="/newsupplier">newsupplier</Link>
+                <Link to="/submenu1/item2">Submenu 1 - Item 2</Link>
               </Menu.Item>
             </SubMenu>
             <SubMenu key="sub2" title="Submenu 2">
               <Menu.Item key="3">
-                <Link to="#">Submenu 2 - Item 1</Link>
+                <Link to="/submenu2/item1">Submenu 2 - Item 1</Link>
               </Menu.Item>
               <Menu.Item key="4">
-                <Link to="#">Submenu 2 - Item 2</Link>
+                <Link to="/submenu2/item2">Submenu 2 - Item 2</Link>
               </Menu.Item>
             </SubMenu>
             <Menu.Item key="4">
-              <Link to="#">Submenu 2 - Item 2</Link>
+              <Link to="/submenu2/item2">Submenu 2 - Item 2</Link>
             </Menu.Item>
             <Menu.Item key="4">
-              <Link to="#">Submenu 2 - Item 2</Link>
+              <Link to="/submenu2/item2">Submenu 2 - Item 2</Link>
             </Menu.Item>
             <Menu.Item key="4">
-              <Link to="#">Submenu 2 - Item 2</Link>
+              <Link to="/submenu2/item2">Submenu 2 - Item 2</Link>
             </Menu.Item>
 
           </Menu>
@@ -94,21 +93,24 @@ const Sidebar: React.FC = () => {
         <Layout>
 
           <Content
-            style={{ padding: '0 30px' }}
+            style={{ padding: '0 50px' }}
           >
             <Breadcrumb style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>Home</Breadcrumb.Item>
               <Breadcrumb.Item>List</Breadcrumb.Item>
               <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
-            <div style={{ background: "#fff", padding: 24, minHeight: 580 }}>
 
-            {/* <AppRoutes /> */}
-            </div>
+            <div style={{ background: "#fff", padding: 24, minHeight: 580 }}>
+              Content
+              
+              
+              </div>
 
           </Content>
 
         </Layout>
+
 
       </Layout>
       <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>

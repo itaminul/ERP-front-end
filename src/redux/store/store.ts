@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from '../features/counterSlice'
 import toggleReducer from '../features/toggleSlice'
 import menuReducer from '../features/menuSlice'
+import modalReducer from '../features/modalSlice'
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     toggle: toggleReducer,
-    menu: menuReducer
+    menu: menuReducer,
+    modal: modalReducer
   },
 })
 

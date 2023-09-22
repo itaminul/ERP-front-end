@@ -21,7 +21,11 @@ import Billing from "./components/Billing";
 import NotFound from "./NotFound";
 import SupplierIndex from "./components/pages/inventory/setup/supplier/SupplierIndex";
 import Sidebar from "./components/layouts/Sidebar";
-import SideContent from "./components/layouts/SideContent";
+import { Layout } from "antd";
+import { Content } from "antd/es/layout/layout";
+import Side from "./components/layouts/Side";
+import TestForm from "./components/TestForm";
+import SupSetupIndex from "./components/pages/inventory/setup/supplier/SupSetupIndex";
 const Router = createBrowserRouter([
   { path: "/", element: <Login />},
   { path: "/dahsboard", element: <Dahsbord />},
@@ -37,8 +41,10 @@ const Router = createBrowserRouter([
   //inventory route
   { path: "/inventory", element: <InventoryDashboard />},
   { path: "/supplier-setup", element: <SupplierIndex />},
+  { path: "/supplier", element: <SupSetupIndex />},
   { path: "/sidebar", element: <Sidebar />},
-  { path: "/sidecontent", element: <SideContent />},
+  { path: "/side", element: <Side />},
+  { path: "/testform", element: <TestForm />},
   //not found route
   { path: "*", element: <NotFound />},
   
@@ -47,11 +53,9 @@ const Router = createBrowserRouter([
 
 function App() {
 return (
-    <div className="App">
-      {/* <TopNav /> */}
-      <RouterProvider router={Router} />
-      {/* <Outlet /> */}
-    </div>
+ 
+        <RouterProvider router={Router} />
+
   );
 }
 
