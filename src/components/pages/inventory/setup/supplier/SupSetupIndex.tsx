@@ -36,7 +36,7 @@ const SupSetupIndex = () => {
                     }}
                 >
 
-                    <CreateSupplier />
+                    <CreateSupplier onClose={onClose} children={undefined}  />
                 </Modal>
 
                 <SupplierTable />

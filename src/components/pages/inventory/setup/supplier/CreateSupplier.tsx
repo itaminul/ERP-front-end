@@ -1,5 +1,6 @@
 import { Button, Form, FormInstance, Input, Select, Space } from "antd";
-import React from "react";
+import React, { ReactNode, useState } from "react";
+import { useNavigate } from "react-router-dom";
 const { Option } = Select;
 const layout = {
     labelCol: { span: 8 },
@@ -9,28 +10,51 @@ const layout = {
 const tailLayout = {
     wrapperCol: { offset: 8, span: 16 }
 }
-const CreateSupplier = () => {
+
+interface onClose {
+    onClose: () => void;
+    children: ReactNode;
+  }
+const CreateSupplier = (props: onClose) => {
     const accessToken = localStorage.getItem('accessToken');
+    const navigate = useNavigate();
     const formRef = React.useRef<FormInstance>(null);
 
     const onGenderChange = (value: string) => {
 
     }
- console.log("accessToken", accessToken)
-    const onFinish = async(values: any) => {
-        console.log("accessToken", accessToken)
-       const response= await fetch(`${process.env.REACT_APP_API_URL}/suppliers`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${accessToken}`
-            },
-            body: JSON.stringify(values)
-        })
-        if(response.ok){
-            console.log("success");
-        }else{
-            console.log("faile")
+
+    const [responseMessage, setResponseMessage] = useState<string | null>('')
+    const [error, setError] = useState<string | null>('');
+    const onFinish = async (values: any) => {
+        const CreateNewArray = {
+            supplierName: values.supplierName,
+            supplierDescription: values.supplierDescription,
+            orgId: Number(values.orgId),
+            countryId: Number(values.countryId)
+        }
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/suppliers`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${accessToken}`
+                },
+                body: JSON.stringify(CreateNewArray)
+            })
+            if (response.ok) {
+                setResponseMessage('Submit Successfully');
+                setError('null');
+                setTimeout(() => {
+                    props.onClose();
+                    setResponseMessage(null);
+                }, 3000)
+            } else {
+                throw new Error("Network response was not ok");
+            }
+        } catch (error) {
+            setResponseMessage(null);
+            setError("Error saving data");
         }
     }
 
@@ -49,6 +73,10 @@ const CreateSupplier = () => {
                 onFinish={onFinish}
                 style={{ maxWidth: 600 }}
             >
+                <div>
+                    {responseMessage && <p style={{ color: "blue"}}>{responseMessage}</p>}
+                    {error && <p>{error}</p>}
+                </div>
                 <Form.Item name="supplierName" htmlFor="string" label="Supplier Name"
                     rules={[
                         { required: true },
