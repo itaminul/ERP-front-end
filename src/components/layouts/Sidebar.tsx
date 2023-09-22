@@ -56,9 +56,8 @@ const Sidebar: React.FC = () => {
       <Layout>
         <Sider width={200} style={{ minHeight: "100%" }} theme="dark">
           <Menu mode="inline"
-            theme="dark"
             defaultSelectedKeys={['Daashbord']}
-            style={{ height: '100%', borderRight: 0 }}>
+            style={{ height: '100%', borderRight: 0,  background: colorBgContainer }}>
             <Menu.Item key="Dasboard">
               Dashbord
             </Menu.Item>
@@ -78,15 +77,7 @@ const Sidebar: React.FC = () => {
                 <Link to="#">Submenu 2 - Item 2</Link>
               </Menu.Item>
             </SubMenu>
-            <Menu.Item key="4">
-              <Link to="#">Submenu 2 - Item 2</Link>
-            </Menu.Item>
-            <Menu.Item key="4">
-              <Link to="#">Submenu 2 - Item 2</Link>
-            </Menu.Item>
-            <Menu.Item key="4">
-              <Link to="#">Submenu 2 - Item 2</Link>
-            </Menu.Item>
+            
 
           </Menu>
         </Sider>

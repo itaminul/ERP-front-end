@@ -28,6 +28,9 @@ const ModalShow: React.FunctionComponent = () => {
 
     return (
         <>
+            <Button type="primary" onClick={showModal}>
+                Open Modal with customized footer
+            </Button>
             <Modal
                 open={open}
                 title="Title"
