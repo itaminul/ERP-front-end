@@ -1,76 +1,148 @@
 import React, { useEffect, useState } from 'react';
-import { Table } from 'antd';
+import { Button, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import Modal from '../../../../../modal/Modal';
+import CreateSupplier from './CreateSupplier';
+import UpdateSupplier from './UpdateSupplier';
 
 interface DataType {
+  id: number,
   key: React.Key;
-  name: string;
-  age: number;
-  address: string;
+  supplierName: string;
+  supplierDescription: string;
 }
-
-const columns: ColumnsType<DataType> = [
-  {
-    title: 'Full Name',
-    width: 100,
-    dataIndex: 'name',
-    key: 'name',
-    fixed: 'left',
-  },
-  {
-    title: 'Age',
-    width: 100,
-    dataIndex: 'age',
-    key: 'age',
-    fixed: 'left',
-    sorter: true,
-  },
-  { title: 'Column 1', dataIndex: 'address', key: '1' },
-  { title: 'Column 2', dataIndex: 'address', key: '2' },
-  {
-    title: 'Action',
-    key: 'operation',
-    fixed: 'right',
-    width: 100,
-    render: () => <a>action</a>,
-  },
-];
 
 const data: DataType[] = [
   {
+    id: 1,
     key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York Park',
+    supplierName: '',
+    supplierDescription: '',
   },
   {
+    id: 2,
     key: '2',
-    name: 'Jim Green',
-    age: 40,
-    address: 'London Park',
+    supplierName: 'Jim Green',
+    supplierDescription: 'London Park',
   },
 ];
 
 const accessToken = localStorage.getItem('accessToken');
 const SupplierTable: React.FC = () => {
-  const[data, setData] = useState<DataType[]>([])
 
-  
+
+
+  const [data, setData] = useState<DataType[]>([])
+  const [selectedData, setSelectedData] = useState<DataType | null>(null);
+  const [recordId, setRecordId] = useState<number | null>(null);
+
+  const [showModal, setShowModalOpen] = useState(false);
+
+  const openModal = (record: DataType) => {
+    console.log("dddd")
+    setSelectedData(record)
+    setShowModalOpen(true)
+  }
+
+  const onClose = () => {
+    setShowModalOpen(false)
+  }
+
+
+
+  const columns: ColumnsType<DataType> = [
+    {
+      
+      title: 'ID',
+      width: 100,
+      dataIndex: 'id',
+      key: 'id',
+      fixed: 'left',
+    },
+    {
+      
+      title: 'Supplier Name',
+      width: 100,
+      dataIndex: 'supplierName',
+      key: 'name',
+      fixed: 'left',
+    },
+    {
+      title: 'Supplier Description',
+      dataIndex: 'supplierDescription',
+      key: '1'
+    },
+    {
+      title: 'Action',
+      key: 'operation',
+      fixed: 'right',
+      width: 100,
+      render: (text: string, record: DataType) => (
+       <>
+         <Button type="primary" onClick={() => handleEidt(record)}>
+          Edit
+        </Button>
+       </>
+      ),
+      // render: () => (
+      //   <Button type="primary"
+      //     onClick={openModal}
+      //   >Edit</Button>
+      // ),
+    },
+  ];
+
+  const handleEidt = (record: DataType) => {
+    // const selectedRecond = data.find((record) => record.id === recordId);;
+    setSelectedData(record)
+    setRecordId(record.id)
+    setShowModalOpen(true)
+
+  }
+
+
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/suppliers`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'application/json', // Depending on your API requirements
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/suppliers`, {
+          method: 'GET',
+          headers: {
+            'Content-type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+          }
+        });
+        const jsonData = await response.json();
+        const showResult = await jsonData.results;
+        setData(showResult);
+        // setData(showResult.map((row: { supplierName: any; supplierDescription: any; }) =>({supplierName:row.supplierName,supplierDescription:row.supplierDescription })) );
+        // setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
-    })
-    .then(response => response.json())
-    .then(data => setData(data))
-    .catch(error => console.error('Error fetching data:', error));
+    };
+
+    fetchData();
   }, []);
-  return(
+
+  return (
     <>
-      <Table style={{ width: "90%"}} columns={columns} dataSource={data} scroll={{ x: 1300 }} />;
+      <Table style={{ width: "90%" }} columns={columns} dataSource={data} scroll={{ x: 1300 }} />;
+
+      <Modal
+        open={showModal}
+        onClose={onClose}
+        title="Update Supplier"
+        modalPadding="px-96"
+        closeButtonPadding="ml-6"
+        modalSize="1000"
+        // recordId={recordId}
+        toggle={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      >
+        <UpdateSupplier onClose={onClose} children={undefined} visible={false} initialValue={''} recordId={recordId} />
+      </Modal>
+
     </>
   )
 }
