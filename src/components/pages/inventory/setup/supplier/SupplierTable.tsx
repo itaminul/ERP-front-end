@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import Modal from '../../../../../modal/Modal';
-import CreateSupplier from './CreateSupplier';
 import UpdateSupplier from './UpdateSupplier';
 
 interface DataType {
@@ -16,8 +15,8 @@ const data: DataType[] = [
   {
     id: 1,
     key: '1',
-    supplierName: '',
-    supplierDescription: '',
+    supplierName: 'abc',
+    supplierDescription: 'def',
   },
   {
     id: 2,
@@ -31,7 +30,10 @@ const accessToken = localStorage.getItem('accessToken');
 const SupplierTable: React.FC = () => {
 
 
-
+  const [previousValues, setPreviousValues] = useState<{ [DataType: string]: string }>(
+    {}
+  ); // Track previous values
+ 
   const [data, setData] = useState<DataType[]>([])
   const [selectedData, setSelectedData] = useState<DataType | null>(null);
   const [recordId, setRecordId] = useState<number | null>(null);
@@ -39,7 +41,6 @@ const SupplierTable: React.FC = () => {
   const [showModal, setShowModalOpen] = useState(false);
 
   const openModal = (record: DataType) => {
-    console.log("dddd")
     setSelectedData(record)
     setShowModalOpen(true)
   }
@@ -136,11 +137,12 @@ const SupplierTable: React.FC = () => {
         closeButtonPadding="ml-6"
         modalSize="1000"
         // recordId={recordId}
+        initialValues={previousValues}
         toggle={function (): void {
           throw new Error("Function not implemented.");
         }}
       >
-        <UpdateSupplier onClose={onClose} children={undefined} visible={false} initialValue={''} recordId={recordId} />
+        <UpdateSupplier onClose={onClose} children={undefined} visible={false} initialValues={''} recordId={recordId} />
       </Modal>
 
     </>
