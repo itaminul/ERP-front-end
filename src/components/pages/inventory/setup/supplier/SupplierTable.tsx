@@ -30,14 +30,15 @@ const accessToken = localStorage.getItem('accessToken');
 const SupplierTable: React.FC = () => {
 
 
-  const [previousValues, setPreviousValues] = useState<{ [DataType: string]: string }>(
-    {}
-  ); // Track previous values
+  const [previousValue, setPreviousValue] = useState<string>('');
+
+  console.log("p value", previousValue);
+
  
   const [data, setData] = useState<DataType[]>([])
   const [selectedData, setSelectedData] = useState<DataType | null>(null);
   const [recordId, setRecordId] = useState<number | null>(null);
-
+  const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [showModal, setShowModalOpen] = useState(false);
 
   const openModal = (record: DataType) => {
@@ -94,10 +95,14 @@ const SupplierTable: React.FC = () => {
   ];
 
   const handleEidt = (record: DataType) => {
+    console.log("recond", record)
+    setPreviousValue(record.supplierName);
     // const selectedRecond = data.find((record) => record.id === recordId);;
     setSelectedData(record)
     setRecordId(record.id)
+    setIsEditModalVisible(true);
     setShowModalOpen(true)
+
 
   }
 
@@ -130,19 +135,22 @@ const SupplierTable: React.FC = () => {
       <Table style={{ width: "90%" }} columns={columns} dataSource={data} scroll={{ x: 1300 }} />;
 
       <Modal
+       visible={isEditModalVisible}
         open={showModal}
         onClose={onClose}
         title="Update Supplier"
         modalPadding="px-96"
         closeButtonPadding="ml-6"
         modalSize="1000"
+        
         // recordId={recordId}
-        initialValues={previousValues}
+        // initialValues={previousValues}
+        previousValue={previousValue} 
         toggle={function (): void {
           throw new Error("Function not implemented.");
         }}
       >
-        <UpdateSupplier onClose={onClose} children={undefined} visible={false} initialValues={''} recordId={recordId} />
+        <UpdateSupplier onClose={onClose} children={undefined} previousValue={previousValue} initialValues={setSelectedData?.name || ''} visible={false}  recordId={recordId} />
       </Modal>
 
     </>

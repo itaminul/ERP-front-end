@@ -1,5 +1,5 @@
 import { Button, Form, FormInstance, Input, Select, Space } from "antd";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const { Option } = Select;
 const layout = {
@@ -21,19 +21,31 @@ interface EditModalProps {
     visible: boolean;
     onClose: () => void;
     // onEdit: (id: number, updatedData: string) => void;
-    initialValues: { [key: string]: string };
+     initialValues: string;
     recordId: number | null;
-    children: ReactNode;
+    // children: ReactNode;
+    previousValue: string; 
+    
 }
 
 
 
 const UpdateSupplier: React.FC<EditModalProps> = ({
     visible,
-    initialValues,
+     initialValues,
+    previousValue,
     recordId,
 }) => {
 
+    const [form] = Form.useForm();
+    // console.log("initialValues bbbb", previousValue)
+    useEffect(() => {
+        console.log("previousValue", previousValue)
+        // Set the initialValue and previousValue in the form when visible changes
+        if (visible) {
+          form.setFieldsValue({ supplierName: previousValue });
+        }
+      }, [visible, previousValue, form]);
 
     const accessToken = localStorage.getItem('accessToken');
     const navigate = useNavigate();
@@ -65,6 +77,7 @@ const UpdateSupplier: React.FC<EditModalProps> = ({
                 ref={formRef}
                 name="control-ref"
                 onFinish={onFinish}
+                // visible={visible}
                 style={{ maxWidth: 600 }}
             >
                 <div>
