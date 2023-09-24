@@ -135,7 +135,7 @@ const SupplierTable: React.FC = () => {
       <Table style={{ width: "90%" }} columns={columns} dataSource={data} scroll={{ x: 1300 }} />;
 
       <Modal
-       visible={isEditModalVisible}
+      //  visible={isEditModalVisible}
         open={showModal}
         onClose={onClose}
         title="Update Supplier"
@@ -145,12 +145,12 @@ const SupplierTable: React.FC = () => {
         
         // recordId={recordId}
         // initialValues={previousValues}
-        previousValue={previousValue} 
+        // previousValue={previousValue} 
         toggle={function (): void {
           throw new Error("Function not implemented.");
         }}
       >
-        <UpdateSupplier onClose={onClose} children={undefined} previousValue={previousValue} initialValues={setSelectedData?.name || ''} visible={false}  recordId={recordId} />
+        <UpdateSupplier onClose={onClose}  previousValue={previousValue} initialValues={setSelectedData?.name || ''} visible={false}  recordId={recordId} />
       </Modal>
 
     </>

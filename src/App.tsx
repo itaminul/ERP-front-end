@@ -26,6 +26,8 @@ import { Content } from "antd/es/layout/layout";
 import Side from "./components/layouts/Side";
 import TestForm from "./components/TestForm";
 import SupSetupIndex from "./components/pages/inventory/setup/supplier/SupSetupIndex";
+import NewSupTable from "./components/pages/inventory/setup/supplier/NewSupTable";
+import NSup from "./components/pages/inventory/setup/supplier/NSup";
 const Router = createBrowserRouter([
   { path: "/", element: <Login />},
   { path: "/dahsboard", element: <Dahsbord />},
@@ -44,6 +46,8 @@ const Router = createBrowserRouter([
   { path: "/supplier", element: <SupSetupIndex />},
   { path: "/sidebar", element: <Sidebar />},
   { path: "/side", element: <Side />},
+  { path: "/newsup", element: <NewSupTable />},
+  { path: "/nsup", element: <NSup />},
   { path: "/testform", element: <TestForm />},
   //not found route
   { path: "*", element: <NotFound />},
