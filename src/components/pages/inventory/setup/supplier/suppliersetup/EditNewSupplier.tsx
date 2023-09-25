@@ -1,19 +1,72 @@
-import { Form, Input } from "antd";
-const EditNewSupplier = () => {
-    return(
-        <>
-        <Form>
-            <Form.Item name="supplierName" label="Supplier name"
-            rules={[
-                {
-                    required: true
-                }
-            ]}
-            >
-                <Input />
-            </Form.Item>
-        </Form>
-        </>
+import { Form, Input, Modal } from "antd";
+import React, { useEffect, useState } from "react";
+
+interface UpdateComponentProps {
+    open: boolean;
+    prevData: Data | null;
+    onUpdate: (data: Data) => void;
+    onCancel: () => void;
+}
+
+interface Data {
+    id: number,
+    supplierName: string,
+    supplierDescription: string
+}
+
+const EditNewSupplier: React.FC<UpdateComponentProps> = ({
+    open,
+    prevData,
+    onUpdate,
+    onCancel
+}) => {
+
+    const [formData, setFormData] = useState<Data | null>(null)
+
+    useEffect(() => {
+        setFormData(prevData);
+    }, [prevData])
+
+    const handleUpdate = () => {
+        if(formData) {
+            onUpdate(formData);
+            onCancel()
+        }
+
+    }
+    return (
+
+
+        <Modal
+            title="Update Data"
+            open={open}
+            onOk={handleUpdate}
+            onCancel={onCancel}
+        >
+            {formData && (
+                <>
+                    <Form>
+                        <Form.Item name="supplierName" label="Supplier name"
+                            rules={[
+                                {
+                                    required: true
+                                }
+                            ]}
+                        >
+
+                            <Input
+                                defaultValue={formData.supplierName}
+                                onChange={(e) => setFormData({ ...formData, supplierName: e.target.value })}
+                            />
+
+                        </Form.Item>
+                    </Form>
+
+                </>
+            )
+            }
+        </Modal>
+
     )
 }
 

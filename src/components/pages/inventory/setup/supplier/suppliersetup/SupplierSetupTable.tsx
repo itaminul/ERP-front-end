@@ -23,8 +23,10 @@ const data: DataItems[] = [
 const SupplierSetuTale = () => {
     const accessToken = localStorage.getItem('accessToken');
     const [data, setData] = useState<DataItems[]>([])
-
-
+    const [editingId, setEditingId] = useState<number | null>(null)
+    const [dataToUpdate, setDataToUpdate] = useState<DataItems | null>(
+        null
+    );
     const columns: ColumnsType<DataItems> = [
         {
             title: 'ID',
@@ -51,11 +53,11 @@ const SupplierSetuTale = () => {
             width: 100,
             render: (_: any, record: DataItems) => (
                 <>
-                  <Button type="link" onClick={() => handleEdit()}>
-                    Edit
-                  </Button>
+                    <Button type="link" onClick={() => handleEdit(record)}>
+                        Edit
+                    </Button>
                 </>
-              ),
+            ),
         }
     ]
     useEffect(() => {
@@ -63,7 +65,7 @@ const SupplierSetuTale = () => {
 
     }, [])
 
- 
+
     const featchData = async () => {
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/suppliers`, {
@@ -84,13 +86,13 @@ const SupplierSetuTale = () => {
         }
     }
 
-    const[createModalOpen, setCreateModalOpen] = useState(false);
+    const [createModalOpen, setCreateModalOpen] = useState(false);
     const openCreateFrom = () => {
         setCreateModalOpen(true);
 
     }
 
-    const [updateModalOpen, setUpdateModalOpen]= useState(false);
+    const [updateModalOpen, setUpdateModalOpen] = useState(false);
 
     const openUpdateModal = () => {
         setUpdateModalOpen(true);
@@ -103,33 +105,48 @@ const SupplierSetuTale = () => {
         setUpdateModalOpen(false);
     }
 
-    const handleEdit = () => {
+    const handleEdit = (record: DataItems) => {
+        setDataToUpdate(record);
+        setEditingId(record.id);
         setUpdateModalOpen(true);
     }
 
+    const handleUpdate = (data: DataItems) => {
+        console.log("data", data)
+    }
 
+    // console.log("data update", dataToUpdate)
     return (
         <>
-        <Button type="link" onClick={openCreateFrom}>Add New</Button>
+            <Button type="link" onClick={openCreateFrom}>Add New</Button>
             <Table columns={columns} dataSource={data} />
             <Modal
-            title="Create"
-            open={createModalOpen}
-            onCancel={handleCancelCreate}
+                title="Create"
+                open={createModalOpen}
+                onCancel={handleCancelCreate}
             >
                 <CreateNewSupplier />
 
             </Modal>
 
-            <Modal
+            {/* <Modal
             title="Update"
             open={updateModalOpen}
             onCancel={handleCancelUpdate}
-            >
+           
+            > */}
 
-                <EditNewSupplier />
+            <EditNewSupplier
 
-            </Modal>
+                open={updateModalOpen}
+                prevData={dataToUpdate}
+                onUpdate={handleUpdate}
+                onCancel={() => setUpdateModalOpen(false)}
+
+
+            />
+
+            {/* </Modal> */}
         </>
     )
 }
