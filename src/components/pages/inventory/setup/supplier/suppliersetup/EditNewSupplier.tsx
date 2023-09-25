@@ -20,7 +20,7 @@ const EditNewSupplier: React.FC<UpdateComponentProps> = ({
     onUpdate,
     onCancel
 }) => {
-
+    const [form] = Form.useForm();
     const [formData, setFormData] = useState<Data | null>(null)
 
     useEffect(() => {
@@ -34,18 +34,21 @@ const EditNewSupplier: React.FC<UpdateComponentProps> = ({
         }
 
     }
+    // console.log("prevData", prevData)
+
+ 
     return (
 
 
         <Modal
             title="Update Data"
-            open={open}
+            open={!!open}
             onOk={handleUpdate}
             onCancel={onCancel}
         >
             {formData && (
                 <>
-                    <Form>
+                    <Form form={form}>
                         <Form.Item name="supplierName" label="Supplier name"
                             rules={[
                                 {
@@ -53,9 +56,9 @@ const EditNewSupplier: React.FC<UpdateComponentProps> = ({
                                 }
                             ]}
                         >
-
+                            {formData.id}
                             <Input
-                                defaultValue={formData.supplierName}
+                                defaultValue={formData.id}
                                 onChange={(e) => setFormData({ ...formData, supplierName: e.target.value })}
                             />
 
