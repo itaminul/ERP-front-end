@@ -68,6 +68,9 @@ const Sidebar: React.FC = () => {
               <Menu.Item key="2">
                 <Link to="/newsupplier">newsupplier</Link>
               </Menu.Item>
+              <Menu.Item key="2">
+                <Link to="/supplier2">newsupplier 2</Link>
+              </Menu.Item>
             </SubMenu>
             <SubMenu key="sub2" title="Submenu 2">
               <Menu.Item key="3">

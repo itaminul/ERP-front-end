@@ -120,6 +120,7 @@ const SupplierTable: React.FC = () => {
         const jsonData = await response.json();
         const showResult = await jsonData.results;
         setData(showResult);
+        console.log("showResult", showResult)
         // setData(showResult.map((row: { supplierName: any; supplierDescription: any; }) =>({supplierName:row.supplierName,supplierDescription:row.supplierDescription })) );
         // setLoading(false);
       } catch (error) {
@@ -129,6 +130,8 @@ const SupplierTable: React.FC = () => {
 
     fetchData();
   }, []);
+
+  console.log("data", data)
 
   return (
     <>

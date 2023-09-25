@@ -3,12 +3,11 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import TopNav from "./components/layouts/TopNav";
-import { Outlet, Route, RouterProvider, Routes, createBrowserRouter } from "react-router-dom";
+import {  RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Dahsbord from "./components/layouts/Dashbord";
-import Aboutusform from "./components/Aboutusform";
 import AboutIndex from "./components/AboutIndex";
 import EditAboutus from "./components/EditAboutus";
 import Login from "./components/layouts/Login";
@@ -28,6 +27,7 @@ import TestForm from "./components/TestForm";
 import SupSetupIndex from "./components/pages/inventory/setup/supplier/SupSetupIndex";
 import NewSupTable from "./components/pages/inventory/setup/supplier/NewSupTable";
 import NSup from "./components/pages/inventory/setup/supplier/NSup";
+import SupplierSetupIndex from "./components/pages/inventory/setup/supplier/suppliersetup/SupplierSetupIndex";
 const Router = createBrowserRouter([
   { path: "/", element: <Login />},
   { path: "/dahsboard", element: <Dahsbord />},
@@ -49,6 +49,8 @@ const Router = createBrowserRouter([
   { path: "/newsup", element: <NewSupTable />},
   { path: "/nsup", element: <NSup />},
   { path: "/testform", element: <TestForm />},
+  { path: "/supplier2", element: <SupplierSetupIndex />},
+  
   //not found route
   { path: "*", element: <NotFound />},
   

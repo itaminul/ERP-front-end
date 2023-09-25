@@ -33,6 +33,7 @@ const CreateSupplier = (props: onClose) => {
             orgId: Number(values.orgId),
             countryId: Number(values.countryId)
         }
+        console.log("CreateNewArray", CreateNewArray);
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/suppliers`, {
                 method: 'POST',
