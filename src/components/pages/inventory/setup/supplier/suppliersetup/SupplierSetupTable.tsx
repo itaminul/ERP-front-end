@@ -117,7 +117,7 @@ const SupplierSetuTale = () => {
 
     const fetchItemById = async(id: any) => {
         try {
-            console.log("id", id)
+           // console.log("id", id)
             const response = await fetch(`${process.env.REACT_APP_API_URL}/suppliers/getById/${id}`, {
                 method: 'GET',
                 headers: {
@@ -129,7 +129,7 @@ const SupplierSetuTale = () => {
                 const jsonData = await response.json();
                 const result = await jsonData.results;
                 setEditingItem(result);
-                console.log("result ss", result)
+                console.log("editingItem", editingItem)
                 // const showData: DataItems[] = result
                 // setData(showData);
             }
@@ -138,14 +138,21 @@ const SupplierSetuTale = () => {
         }
       };
 
-    const handleEdit = (record: DataItems) => {
-        console.log("dataToUpdate", dataToUpdate)
-        fetchItemById(record.id)
-        // form.setFieldsValue(record);
-        setDataToUpdate(record);
-        // setEditingId(record.id);
+      const [items, setItems] = useState([]);
+      const [selectedItem, setSelectedItem] = useState(null);
+      const handleEdit = (record:any) => {
+        setSelectedItem(record);
         setUpdateModalOpen(true);
-    }
+      };
+
+    // const handleEdit = (record: DataItems) => {
+    //  //   console.log("dataToUpdate", dataToUpdate)
+    //     // fetchItemById(record.id)
+    //     // form.setFieldsValue(record);
+    //     setDataToUpdate(record);
+    //     // setEditingId(record.id);
+    //     setUpdateModalOpen(true);
+    // }
 
     const handleUpdate = async(data: DataItems) => {
         const CreateNewArray = {
@@ -173,7 +180,7 @@ const SupplierSetuTale = () => {
         }
     }
 
-    console.log("data update", dataToUpdate)
+    //console.log("data update", dataToUpdate)
     return (
         <>
             <Button type="link" onClick={openCreateFrom}>Add New</Button>
@@ -201,6 +208,7 @@ const SupplierSetuTale = () => {
                 onUpdate={handleUpdate}
                 // onCancel={() => setUpdateModalOpen(false)}
                 onCancel={handleCancelUpdate}
+                item={selectedItem}
 
 
             />

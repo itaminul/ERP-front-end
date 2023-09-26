@@ -6,6 +6,7 @@ interface UpdateComponentProps {
     prevData: Data | null;
     onUpdate: (data: Data) => void;
     onCancel: () => void;
+    item: any
 }
 
 interface Data {
@@ -18,14 +19,17 @@ const EditNewSupplier: React.FC<UpdateComponentProps> = ({
     open,
     prevData,
     onUpdate,
-    onCancel
+    onCancel,
+    item
 }) => {
     const [form] = Form.useForm();
     const [formData, setFormData] = useState<Data | null>(null)
 
     useEffect(() => {
-        setFormData(prevData);
-    }, [prevData])
+        if (item) {
+          form.setFieldsValue(item); // Set form fields with item data when editing
+        }
+      }, [form, item]);
 
     const handleUpdate = () => {
         if(formData) {
@@ -41,6 +45,7 @@ const EditNewSupplier: React.FC<UpdateComponentProps> = ({
 
 
         <Modal
+        forceRender={true}
             title="Update Data"
             open={!!open}
             onOk={handleUpdate}
