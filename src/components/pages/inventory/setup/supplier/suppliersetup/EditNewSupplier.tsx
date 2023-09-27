@@ -34,8 +34,6 @@ const EditNewSupplier: React.FC<UpdateComponentProps> = ({
         }
 
     }
-    // console.log("prevData", prevData)
-
  
     return (
 
@@ -56,9 +54,12 @@ const EditNewSupplier: React.FC<UpdateComponentProps> = ({
                                 }
                             ]}
                         >
-                            {formData.id}
+                          <Input 
+                            hidden
+                            value={formData.id}
+                          />
                             <Input
-                                defaultValue={formData.id}
+                                value={formData.supplierName}
                                 onChange={(e) => setFormData({ ...formData, supplierName: e.target.value })}
                             />
 
