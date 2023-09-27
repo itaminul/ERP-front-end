@@ -21,6 +21,7 @@ const data: DataItems[] = [
 
 
 const SupplierSetuTale = () => {
+    const [form] = Form.useForm();
     const accessToken = localStorage.getItem('accessToken');
     const [data, setData] = useState<DataItems[]>([])
     const [createModalOpen, setCreateModalOpen] = useState(false);
@@ -65,7 +66,7 @@ const SupplierSetuTale = () => {
             ),
         }
     ]
-    
+
     useEffect(() => {
         featchData();
 
@@ -93,10 +94,48 @@ const SupplierSetuTale = () => {
     }
 
 
-    const openCreateFrom = () => {
+    const handleCreate = async() => {
+        form.resetFields();
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/suppliers`, {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            })
+   
+                const jsonData = await response.json();
+                
+                const newArrray = {
+                    supplierName: jsonData.supplierName,
+                        countryId: 1,
+                        activeStatus: true
+                }
+                
+                setData([...data, jsonData]);
+            
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
         setCreateModalOpen(true);
 
     }
+
+    const handleSaveCreate = async() => {
+        try {
+            const value = await form.validateFields();
+            const createArray = {
+                ...value
+            }
+            setData([...data, createArray]);
+        } catch (error) {
+            
+        }
+
+    }
+    console.log("create new ", data);
+
 
     const handleCancelCreate = () => {
         setCreateModalOpen(false);
@@ -123,7 +162,6 @@ const SupplierSetuTale = () => {
         }
     };
 
-    const [editedValue, setEditedValue] = useState<DataItems | null>(null);
     const handleEdit = (record: DataItems) => {
         setDataToUpdate(record);
         setUpdateModalOpen(true);
@@ -156,16 +194,15 @@ const SupplierSetuTale = () => {
 
     return (
         <>
-            <Button type="link" onClick={openCreateFrom}>Add New</Button>
+            <Button type="link" key="create" onClick={handleCreate}>Add New</Button>
             <Table columns={columns} dataSource={data} rowKey="id" />
-            <Modal
-                title="Create"
+           
+                <CreateNewSupplier
                 open={createModalOpen}
                 onCancel={handleCancelCreate}
-            >
-                <CreateNewSupplier />
-
-            </Modal>
+                onCreate={handleCreate}
+                // onOk={handleSaveCreate} 
+                />
 
             <EditNewSupplier
 
@@ -181,4 +218,8 @@ const SupplierSetuTale = () => {
 }
 
 export default SupplierSetuTale;
+
+function onCreate() {
+    throw new Error("Function not implemented.");
+}
 
