@@ -21,17 +21,16 @@ const data: DataItems[] = [
 
 
 const SupplierSetuTale = () => {
+    const [form] = Form.useForm();
     const accessToken = localStorage.getItem('accessToken');
     const [data, setData] = useState<DataItems[]>([])
     const [createModalOpen, setCreateModalOpen] = useState(false);
     const [updateModalOpen, setUpdateModalOpen] = useState(false);
-    const [form] = Form.useForm();
-    const [editingId, setEditingId] = useState<number | null>(null)
     const [dataToUpdate, setDataToUpdate] = useState<DataItems | null>(
         null
     );
 
-    const [editingItem, setEditingItem] = useState(null);
+
     const columns: ColumnsType<DataItems> = [
         {
             title: 'ID',
@@ -67,6 +66,7 @@ const SupplierSetuTale = () => {
             ),
         }
     ]
+
     useEffect(() => {
         featchData();
 
@@ -94,30 +94,58 @@ const SupplierSetuTale = () => {
     }
 
 
-    const openCreateFrom = () => {
+    const handleCreate = async() => {
+        form.resetFields();
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/suppliers`, {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            })
+   
+                const jsonData = await response.json();
+                
+                const newArrray = {
+                    supplierName: jsonData.supplierName,
+                        countryId: 1,
+                        activeStatus: true
+                }
+                
+                setData([...data, jsonData]);
+            
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
         setCreateModalOpen(true);
 
     }
 
+    const handleSaveCreate = async() => {
+        try {
+            const value = await form.validateFields();
+            const createArray = {
+                ...value
+            }
+            setData([...data, createArray]);
+        } catch (error) {
+            
+        }
 
-
-    const openUpdateModal = () => {
-        setUpdateModalOpen(true);
     }
+    console.log("create new ", data);
+
 
     const handleCancelCreate = () => {
         setCreateModalOpen(false);
     }
     const handleCancelUpdate = () => {
         setUpdateModalOpen(false);
-
-        setEditingItem(null);
-        // onClose(); // Close the modal
     }
 
-    const fetchItemById = async(id: any) => {
+    const fetchItemById = async (id: any) => {
         try {
-           // console.log("id", id)
             const response = await fetch(`${process.env.REACT_APP_API_URL}/suppliers/getById/${id}`, {
                 method: 'GET',
                 headers: {
@@ -128,33 +156,18 @@ const SupplierSetuTale = () => {
             if (response.ok) {
                 const jsonData = await response.json();
                 const result = await jsonData.results;
-                setEditingItem(result);
-                console.log("editingItem", editingItem)
-                // const showData: DataItems[] = result
-                // setData(showData);
             }
         } catch (error) {
             console.error('Error fetching data:', error);
         }
-      };
+    };
 
-      const [items, setItems] = useState([]);
-      const [selectedItem, setSelectedItem] = useState(null);
-      const handleEdit = (record:any) => {
-        setSelectedItem(record);
+    const handleEdit = (record: DataItems) => {
+        setDataToUpdate(record);
         setUpdateModalOpen(true);
-      };
+    }
 
-    // const handleEdit = (record: DataItems) => {
-    //  //   console.log("dataToUpdate", dataToUpdate)
-    //     // fetchItemById(record.id)
-    //     // form.setFieldsValue(record);
-    //     setDataToUpdate(record);
-    //     // setEditingId(record.id);
-    //     setUpdateModalOpen(true);
-    // }
-
-    const handleUpdate = async(data: DataItems) => {
+    const handleUpdate = async (data: DataItems) => {
         const CreateNewArray = {
             supplierName: data.supplierName,
             countryId: 1,
@@ -171,7 +184,6 @@ const SupplierSetuTale = () => {
             })
             if (response.ok) {
                 setTimeout(() => {
-                    setEditingItem(null);
                 }, 3000)
             } else {
                 throw new Error("Network response was not ok");
@@ -180,46 +192,33 @@ const SupplierSetuTale = () => {
         }
     }
 
-    //console.log("data update", dataToUpdate)
     return (
         <>
-            <Button type="link" onClick={openCreateFrom}>Add New</Button>
+            <Button type="link" key="create" onClick={handleCreate}>Add New</Button>
             <Table columns={columns} dataSource={data} rowKey="id" />
-            <Modal
-                title="Create"
+           
+                <CreateNewSupplier
                 open={createModalOpen}
                 onCancel={handleCancelCreate}
-            >
-                <CreateNewSupplier />
-
-            </Modal>
-
-            {/* <Modal
-            title="Update"
-            open={updateModalOpen}
-            onCancel={handleCancelUpdate}
-           
-            > */}
+                onCreate={handleCreate}
+                // onOk={handleSaveCreate} 
+                />
 
             <EditNewSupplier
 
                 open={updateModalOpen}
                 prevData={dataToUpdate}
                 onUpdate={handleUpdate}
-                // onCancel={() => setUpdateModalOpen(false)}
                 onCancel={handleCancelUpdate}
-                item={selectedItem}
 
 
             />
-
-            {/* </Modal> */}
         </>
     )
 }
 
 export default SupplierSetuTale;
 
-function setData(dummyData: DataItems[]) {
+function onCreate() {
     throw new Error("Function not implemented.");
 }
