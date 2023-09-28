@@ -219,6 +219,3 @@ const SupplierSetuTale = () => {
 
 export default SupplierSetuTale;
 
-function onCreate() {
-    throw new Error("Function not implemented.");
-}
