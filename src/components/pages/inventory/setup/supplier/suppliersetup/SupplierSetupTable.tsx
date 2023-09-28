@@ -8,14 +8,18 @@ import EditNewSupplier from "./EditNewSupplier";
 interface DataItems {
     id: number;
     supplierName: string,
-    supplierDescription: string
+    supplierDescription: string,
+    countryId: number,
+    orgId: number
 }
 
 const data: DataItems[] = [
     {
         id: 1,
         supplierName: 'ABC',
-        supplierDescription: "supplierDescription"
+        supplierDescription: "supplierDescription",
+        countryId:1,
+        orgId: 1
     }
 ]
 
@@ -35,9 +39,9 @@ const SupplierSetuTale = () => {
         {
             title: 'ID',
             width: 100,
-            dataIndex: 'id',
+            dataIndex: 'key',
             fixed: 'left',
-            key: 'id'
+            rowScope: 'row',
         },
         {
             title: 'Supplier Name',
