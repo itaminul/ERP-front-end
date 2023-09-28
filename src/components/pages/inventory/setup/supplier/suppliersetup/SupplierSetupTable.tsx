@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Modal, Table } from "antd";
+import { Alert, Button, Form, Modal, Space, Table, message } from "antd";
 import { ColumnsType } from "antd/es/table";
 import CreateNewSupplier from "./CreateNewSupplier";
 import EditNewSupplier from "./EditNewSupplier";
@@ -59,7 +59,7 @@ const SupplierSetuTale = () => {
             width: 100,
             render: (_: any, record: DataItems) => (
                 <>
-                    <Button onClick={() => handleEdit(record)}>
+                    <Button style={{ background: "green", color: 'white'}} onClick={() => handleEdit(record)}>
                         Edit
                     </Button>
                 </>
@@ -94,7 +94,7 @@ const SupplierSetuTale = () => {
     }
 
 
-    const handleCreate = async() => {
+    const handleCreate = async (data: DataItems) => {
         form.resetFields();
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/suppliers`, {
@@ -102,14 +102,21 @@ const SupplierSetuTale = () => {
                 headers: {
                     'Content-type': 'application/json',
                     'Authorization': `Bearer ${accessToken}`
-                }
+                },
+
+                body: JSON.stringify(data)
             })
-   
-                const jsonData = await response.json();
-                body: JSON.stringify(response)
-                console.log("jsonData", jsonData);                
-                setData([...data, jsonData]);
-            
+
+            if (response.ok) {
+                message.success('Data saved successfully');
+                setTimeout(() => {
+                    setCreateModalOpen(false);
+                }, 3000);
+
+            } else {
+                message.error('Failed to save data');
+            }
+
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -117,45 +124,12 @@ const SupplierSetuTale = () => {
 
     }
 
-    const handleSaveCreate = async() => {
-        try {
-            const value = await form.validateFields();
-            const createArray = {
-                ...value
-            }
-            setData([...data, createArray]);
-        } catch (error) {
-            
-        }
-
-    }
-    // console.log("create new ", data);
-
-
     const handleCancelCreate = () => {
         setCreateModalOpen(false);
     }
     const handleCancelUpdate = () => {
         setUpdateModalOpen(false);
     }
-
-    const fetchItemById = async (id: any) => {
-        try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/suppliers/getById/${id}`, {
-                method: 'GET',
-                headers: {
-                    'Content-type': 'application/json',
-                    'Authorization': `Bearer ${accessToken}`
-                }
-            })
-            if (response.ok) {
-                const jsonData = await response.json();
-                const result = await jsonData.results;
-            }
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    };
 
     const handleEdit = (record: DataItems) => {
         setDataToUpdate(record);
@@ -190,14 +164,14 @@ const SupplierSetuTale = () => {
     return (
         <>
             <Button type="link" key="create" onClick={() => setCreateModalOpen(true)}>Add New</Button>
-            <Table columns={columns} dataSource={data} rowKey="id" />
-           
-                <CreateNewSupplier
+            <Table columns={columns} dataSource={data} rowKey="id" bordered
+                size="middle" scroll={{ x: 'calc(1000px + 100%)', y: 1040 }} pagination={{ pageSize: 10 }} />
+
+            <CreateNewSupplier
                 open={createModalOpen}
                 onCancel={handleCancelCreate}
                 onCreate={handleCreate}
-                // onOk={handleSaveCreate} 
-                />
+            />
 
             <EditNewSupplier
 
