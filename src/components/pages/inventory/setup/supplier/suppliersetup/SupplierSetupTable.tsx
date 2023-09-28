@@ -106,13 +106,8 @@ const SupplierSetuTale = () => {
             })
    
                 const jsonData = await response.json();
-                
-                const newArrray = {
-                    supplierName: jsonData.supplierName,
-                        countryId: 1,
-                        activeStatus: true
-                }
-                
+                body: JSON.stringify(response)
+                console.log("jsonData", jsonData);                
                 setData([...data, jsonData]);
             
         } catch (error) {
@@ -134,7 +129,7 @@ const SupplierSetuTale = () => {
         }
 
     }
-    console.log("create new ", data);
+    // console.log("create new ", data);
 
 
     const handleCancelCreate = () => {
@@ -194,7 +189,7 @@ const SupplierSetuTale = () => {
 
     return (
         <>
-            <Button type="link" key="create" onClick={handleCreate}>Add New</Button>
+            <Button type="link" key="create" onClick={() => setCreateModalOpen(true)}>Add New</Button>
             <Table columns={columns} dataSource={data} rowKey="id" />
            
                 <CreateNewSupplier
