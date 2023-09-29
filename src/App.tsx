@@ -41,11 +41,11 @@ const Router = createBrowserRouter([
   { path: "/billing", element: <Billing />},
   { path: "/editDepartment", element: <EditDepartment />},
   //inventory route
-  { path: "/inventory", element: <InventoryDashboard />},
+  // { path: "/inventory", element: <InventoryDashboard />},
   { path: "/supplier-setup", element: <SupplierIndex />},
   { path: "/supplier", element: <SupSetupIndex />},
   { path: "/sidebar", element: <Sidebar />},
-  { path: "/side", element: <Side />},
+  { path: "/inventory", element: <Side />},
   { path: "/newsup", element: <NewSupTable />},
   { path: "/nsup", element: <NSup />},
   { path: "/testform", element: <TestForm />},
