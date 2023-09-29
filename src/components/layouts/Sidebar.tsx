@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Title from 'antd/es/typography/Title';
 import { Footer } from 'antd/es/layout/layout';
 import AppRoutes from '../router/AppRoutes';
+import BreadcrambsIndex from '../Breadcrambs/BreadcrambsIndex';
 
 const { Header, Content, Sider } = Layout;
 const menu = [
@@ -47,6 +48,11 @@ const Sidebar: React.FC = () => {
   const handleSubMenuClick = () => {
     setShow(true)
   }
+
+  const breadcrumbData = [
+    { home: 'Home', label: 'Supplier Setup', link: '/supplier-setup', list: 'List' }
+  ];
+
   return (
     <Layout>
       <Header>
@@ -63,24 +69,9 @@ const Sidebar: React.FC = () => {
             </Menu.Item>
             <SubMenu key="sub1" title="Setup">
               <Menu.Item key="1">
-                <Link to="/supplier">Supplier</Link>
-              </Menu.Item>
-              <Menu.Item key="2">
-                <Link to="/newsupplier">newsupplier</Link>
-              </Menu.Item>
-              <Menu.Item key="2">
-                <Link to="/supplier2">newsupplier 2</Link>
-              </Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub2" title="Submenu 2">
-              <Menu.Item key="3">
-                <Link to="#">Submenu 2 - Item 1</Link>
-              </Menu.Item>
-              <Menu.Item key="4">
-                <Link to="#">Submenu 2 - Item 2</Link>
-              </Menu.Item>
-            </SubMenu>
-            
+                <Link to="/supplier-setup">Supplier</Link>
+              </Menu.Item>             
+            </SubMenu>           
 
           </Menu>
         </Sider>
@@ -90,11 +81,7 @@ const Sidebar: React.FC = () => {
           <Content
             style={{ padding: '0 30px' }}
           >
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
+           <BreadcrambsIndex {...breadcrumbData[0]} />
             <div style={{ background: "#fff", padding: 24, minHeight: 580 }}>
 
             {/* <AppRoutes /> */}
@@ -105,7 +92,7 @@ const Sidebar: React.FC = () => {
         </Layout>
 
       </Layout>
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
+      <Footer style={{ textAlign: 'center' }}>Footer</Footer>
     </Layout>
   );
 };

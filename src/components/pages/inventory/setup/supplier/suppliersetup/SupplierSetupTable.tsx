@@ -167,7 +167,7 @@ const SupplierSetuTale = () => {
 
     return (
         <>
-            <Button type="link" key="create" onClick={() => setCreateModalOpen(true)}>Add New</Button>
+            <Button key="create" style={{ float: 'right', background: 'black', color: 'white', marginRight: '27px'}} onClick={() => setCreateModalOpen(true)}>Add New</Button>
             <Table columns={columns} dataSource={data} rowKey="id" bordered
                 size="middle" scroll={{ x: 'calc(1000px + 100%)', y: 1040 }} pagination={{ pageSize: 10 }} />
 

@@ -42,8 +42,9 @@ const Router = createBrowserRouter([
   { path: "/editDepartment", element: <EditDepartment />},
   //inventory route
   // { path: "/inventory", element: <InventoryDashboard />},
-  { path: "/supplier-setup", element: <SupplierIndex />},
-  { path: "/supplier", element: <SupSetupIndex />},
+  { path: "/supplier-setup", element: <SupplierSetupIndex />},
+  // { path: "/supplier-setup", element: <SupplierIndex />},
+  // { path: "/supplier", element: <SupSetupIndex />},
   { path: "/sidebar", element: <Sidebar />},
   { path: "/inventory", element: <Side />},
   { path: "/newsup", element: <NewSupTable />},
