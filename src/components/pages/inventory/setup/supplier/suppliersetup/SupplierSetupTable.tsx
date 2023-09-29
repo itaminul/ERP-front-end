@@ -18,7 +18,7 @@ const data: DataItems[] = [
         id: 1,
         supplierName: 'ABC',
         supplierDescription: "supplierDescription",
-        countryId:1,
+        countryId: 1,
         orgId: 1
     }
 ]
@@ -39,9 +39,10 @@ const SupplierSetuTale = () => {
         {
             title: 'ID',
             width: 100,
-            dataIndex: 'key',
+            dataIndex: 'rowNumber',
             fixed: 'left',
-            rowScope: 'row',
+            key: 'rowNumber',
+            render: (text, rowRecord, index) => index + 1,
         },
         {
             title: 'Supplier Name',
@@ -63,7 +64,7 @@ const SupplierSetuTale = () => {
             width: 100,
             render: (_: any, record: DataItems) => (
                 <>
-                    <Button style={{ background: "green", color: 'white'}} onClick={() => handleEdit(record)}>
+                    <Button style={{ background: "green", color: 'white' }} onClick={() => handleEdit(record)} >
                         Edit
                     </Button>
                 </>
@@ -167,9 +168,19 @@ const SupplierSetuTale = () => {
 
     return (
         <>
-            <Button key="create" style={{ float: 'right', background: 'black', color: 'white', marginRight: '27px'}} onClick={() => setCreateModalOpen(true)}>Add New</Button>
-            <Table columns={columns} dataSource={data} rowKey="id" bordered
-                size="middle" scroll={{ x: 'calc(1000px + 100%)', y: 1040 }} pagination={{ pageSize: 10 }} />
+            <Button key="create" style={{ float: 'right', background: 'black', color: 'white', marginRight: '27px' }} onClick={() => setCreateModalOpen(true)}>Add New</Button>
+            <Table columns={columns} dataSource={data} bordered
+                rowKey={(record: { id: any; }) => record.id}
+                size="middle" scroll={{ x: 'calc(1000px + 100%)', y: 1040 }}
+                pagination={{
+                    showSizeChanger: true,
+                    showQuickJumper: true,
+                    pageSizeOptions: ['10', '20', '50', '100','All'],
+                    defaultPageSize: 10,
+                    total: data.length,
+                    showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
+                }}
+            />
 
             <CreateNewSupplier
                 open={createModalOpen}

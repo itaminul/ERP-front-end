@@ -1,4 +1,4 @@
-import { Form, Input, Modal, Select } from "antd";
+import { Button, Form, Input, Modal, Select } from "antd";
 import React, { useEffect, useState } from "react";
 const { Option } = Select;
 interface UpdateComponentProps {
@@ -50,8 +50,8 @@ const EditNewSupplier: React.FC<UpdateComponentProps> = ({
         featchCountrys();
     }, [])
     const [countries, setCountries] = useState<CountryData[] | null>(null)
-      // Initialize the selected option value from the record
-//   const [selectedOption, setSelectedOption] = useState(formData?.countryId);
+    // Initialize the selected option value from the record
+    //   const [selectedOption, setSelectedOption] = useState(formData?.countryId);
 
     const featchCountrys = async () => {
         try {
@@ -71,25 +71,35 @@ const EditNewSupplier: React.FC<UpdateComponentProps> = ({
 
         }
     }
- // Handle the change of the Select component
- const [formDataa, setFormDataa] = useState({
-    selectOption: '',
-  });
- const handleSelectChange = (value: any) => {
-    setFormDataa({
-        ...formData,
-        selectOption: value
-      });
-  };
+    // Handle the change of the Select component
+    const [formDataa, setFormDataa] = useState({
+        selectOption: '',
+    });
+    const [selectedValue, setSelectedValue] = useState(prevData?.countryId);
+
+    const handleSelectChange = (value: any) => {
+      setSelectedValue(value);
+    };
+  
 
     console.log("countries", countries)
     return (
         <Modal
             title="Update Data"
             open={!!open}
-            onOk={handleUpdate}
-            onCancel={onCancel}
+            //   onOk={handleUpdate}
+            // onCancel={onCancel}
             width={600}
+            footer={
+                [
+                    <Button type="primary" style={{ background: "blue" }} onClick={handleUpdate}>
+                        Update
+                    </Button>,
+                    <Button type="default" onClick={onCancel}>
+                        Cancel
+                    </Button>
+                ]
+            }
         >
             {formData && (
                 <>
@@ -124,12 +134,12 @@ const EditNewSupplier: React.FC<UpdateComponentProps> = ({
                             valuePropName="checked"
                             rules={[{ required: true }]}>
                             <Select
-                               
+
                                 placeholder="Select a option and change input text above"
-                                onSelect={handleSelectChange}
+                                onChange={handleSelectChange}
                                 // onSelect={(e) => setFormData({ ...formData, countryId:e.valueOf() })}
                                 value={formData.countryId}
-                               
+
                             >
                                 {countries?.map((country) => (
                                     <Option key={formData.countryId} value={country.id}>{country.countryName}</Option>
@@ -138,16 +148,16 @@ const EditNewSupplier: React.FC<UpdateComponentProps> = ({
                             </Select>
                         </Form.Item>
                         <Form.Item name="orgId" label="Organization" rules={[{ required: true }]}
-                          valuePropName="checked">
+                            valuePropName="checked">
                             <Select
-                             value={formData.orgId}
+                                value={formData.orgId}
                                 placeholder="Select a option and change input text above"
 
                                 allowClear
                             >
                                 <Option key={formData.orgId} value="1">A</Option>
-                                <Option key={formData.orgId}  value="2">B</Option>
-                                <Option key={formData.orgId}  value="3">C</Option>
+                                <Option key={formData.orgId} value="2">B</Option>
+                                <Option key={formData.orgId} value="3">C</Option>
                             </Select>
                         </Form.Item>
                     </Form>

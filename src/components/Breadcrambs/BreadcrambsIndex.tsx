@@ -1,5 +1,4 @@
-import { Breadcrumb, Layout } from "antd";
-import { Content } from "antd/es/layout/layout";
+import { Breadcrumb } from "antd";
 import React from "react";
 interface Breadcrumb {
     home: string,

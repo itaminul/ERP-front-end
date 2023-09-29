@@ -1,6 +1,4 @@
 import { useState } from "react";
-import LeftSidebar from "./LeftSidebar";
-import TopNav from "./TopNav";
 import { Link } from "react-router-dom";
 
 const Dahsbord = () => {
