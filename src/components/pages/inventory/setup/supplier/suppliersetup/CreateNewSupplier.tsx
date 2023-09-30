@@ -46,12 +46,13 @@ const CreateNewSupplier: React.FC<CreateModalProps> = ({
                 width={600}
                 footer={
                     [
-                        <Button type="primary" style={{ background: "blue" }} onClick={handleSave}>
-                            Submit
-                        </Button>,
                         <Button type="default" onClick={onCancel}>
                             Cancel
+                        </Button>,
+                        <Button type="primary" style={{ background: "blue" }} onClick={handleSave}>
+                            Submit
                         </Button>
+                        
                     ]
                 }
             >

@@ -175,7 +175,7 @@ const SupplierSetuTale = () => {
                 pagination={{
                     showSizeChanger: true,
                     showQuickJumper: true,
-                    pageSizeOptions: ['10', '20', '50', '100','All'],
+                    pageSizeOptions: ['10', '20', '50', '100','1000'],
                     defaultPageSize: 10,
                     total: data.length,
                     showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,

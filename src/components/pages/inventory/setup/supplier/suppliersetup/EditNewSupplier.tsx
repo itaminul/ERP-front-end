@@ -75,12 +75,12 @@ const EditNewSupplier: React.FC<UpdateComponentProps> = ({
     const [formDataa, setFormDataa] = useState({
         selectOption: '',
     });
-    const [selectedValue, setSelectedValue] = useState(prevData?.countryId);
-
     const handleSelectChange = (value: any) => {
-      setSelectedValue(value);
+        setFormDataa({
+            ...formData,
+            selectOption: value
+        });
     };
-  
 
     console.log("countries", countries)
     return (
@@ -92,11 +92,12 @@ const EditNewSupplier: React.FC<UpdateComponentProps> = ({
             width={600}
             footer={
                 [
-                    <Button type="primary" style={{ background: "blue" }} onClick={handleUpdate}>
-                        Update
-                    </Button>,
+
                     <Button type="default" onClick={onCancel}>
                         Cancel
+                    </Button>,
+                    <Button type="primary" style={{ background: "blue" }} onClick={handleUpdate}>
+                        Update
                     </Button>
                 ]
             }
@@ -136,7 +137,7 @@ const EditNewSupplier: React.FC<UpdateComponentProps> = ({
                             <Select
 
                                 placeholder="Select a option and change input text above"
-                                onChange={handleSelectChange}
+                                onSelect={handleSelectChange}
                                 // onSelect={(e) => setFormData({ ...formData, countryId:e.valueOf() })}
                                 value={formData.countryId}
 
