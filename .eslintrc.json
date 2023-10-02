@@ -1,4 +1,9 @@
 {
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "env": {
     "browser": true,
     "es2021": true
@@ -62,6 +67,7 @@
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/no-var-requires": 1,
     "react/react-in-jsx-scope": "off",
-    "jsx-a11y/label-has-associated-control": "off"
+    "jsx-a11y/label-has-associated-control": "off",
+    "@typescript-eslint/triple-slash-reference": "off"
   }
 }

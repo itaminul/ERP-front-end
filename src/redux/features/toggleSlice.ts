@@ -1,16 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
-import type { RootState } from '../store/store'
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { type RootState } from '../store/store';
 
 // Define a type for the slice state
 interface CounterState {
-  value: boolean
+  value: boolean;
 }
 
 // Define the initial state using that type
 const initialState: CounterState = {
   value: false,
-} as CounterState
+};
 
 export const toggleSlice = createSlice({
   name: 'toggle',
@@ -18,21 +17,21 @@ export const toggleSlice = createSlice({
   initialState,
   reducers: {
     show: (state) => {
-      state.value = false
+      state.value = false;
     },
     close: (state) => {
-      state.value = true
+      state.value = true;
     },
     // Use the PayloadAction type to declare the contents of `action.payload`
     incrementByAmount: (state, action: PayloadAction<any>) => {
-      state.value = action.payload
+      state.value = action.payload;
     },
   },
-})
+});
 
-export const { show, close, incrementByAmount } = toggleSlice.actions
+export const { show, close, incrementByAmount } = toggleSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.counter.value
+export const selectCount = (state: RootState) => state.counter.value;
 
-export default toggleSlice.reducer
+export default toggleSlice.reducer;

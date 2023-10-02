@@ -32,7 +32,12 @@ const NSup: React.FC = () => {
       key: 'actions',
       render: (_: any, record: DataItem) => (
         <>
-          <Button type="link" onClick={() => handleEdit(record)}>
+          <Button
+            type="link"
+            onClick={() => {
+              handleEdit(record);
+            }}
+          >
             Edit
           </Button>
         </>
@@ -67,24 +72,34 @@ const NSup: React.FC = () => {
   };
 
   const handleSaveCreate = () => {
-    form.validateFields().then((values) => {
-      // Handle creating a new record
-      const newId = data.length + 1;
-      const newData: DataItem = { id: newId, ...values };
-      setData([...data, newData]);
-      setCreateModalVisible(false);
-    });
+    form
+      .validateFields()
+      .then((values) => {
+        // Handle creating a new record
+        const newId = data.length + 1;
+        const newData: DataItem = { id: newId, ...values };
+        setData([...data, newData]);
+        setCreateModalVisible(false);
+      })
+      .catch((err) => {
+        console.log('Error:', err);
+      });
   };
 
   const handleSaveUpdate = () => {
-    form.validateFields().then((values) => {
-      // Handle updating an existing record
-      const updatedData = data.map((item) =>
-        item.id === editingId ? { ...item, ...values } : item
-      );
-      setData(updatedData);
-      setUpdateModalVisible(false);
-    });
+    form
+      .validateFields()
+      .then((values) => {
+        // Handle updating an existing record
+        const updatedData = data.map((item) =>
+          item.id === editingId ? { ...item, ...values } : item
+        );
+        setData(updatedData);
+        setUpdateModalVisible(false);
+      })
+      .catch((err) => {
+        console.log('Error:', err);
+      });
   };
 
   const handleCancelCreate = () => {
@@ -97,7 +112,6 @@ const NSup: React.FC = () => {
 
   return (
     <div>
-        
       <Button type="link" onClick={handleCreate}>
         Add New
       </Button>

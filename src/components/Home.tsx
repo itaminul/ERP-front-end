@@ -1,4 +1,4 @@
-import Login from "./layouts/Login";
+import Login from './layouts/Login';
 
 const Home = () => {
   return (

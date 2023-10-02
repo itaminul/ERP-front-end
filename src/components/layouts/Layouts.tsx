@@ -1,17 +1,17 @@
-import { Space } from "antd";
-import PageContent from "../pageContent/Index";
-import SideMenu from "./SideMenu";
-// import Sidebar from "./Sidebar";
+// import { Space } from 'antd';
+// import PageContent from '../pageContent/Index';
+// import SideMenu from './SideMenu';
+// // import Sidebar from "./Sidebar";
 
-const Layouts = () => {
-    return (
-        <>
-            <Space>
-                <SideMenu></SideMenu>
-                {/* <PageContent></PageContent> */}
-            </Space>
-        </>
-    )
-}
+// const Layouts = () => {
+//   return (
+//     <>
+//       <Space>
+//         <SideMenu></SideMenu>
+//         {/* <PageContent></PageContent> */}
+//       </Space>
+//     </>
+//   );
+// };
 
-export default Layouts;
+// export default Layouts;

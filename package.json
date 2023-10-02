@@ -6,7 +6,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --config ./.eslintrc.json",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "prettier \"src/**/*.{ts,tsx}\" --check",
+    "prettier:fix": "npm run prettier -- --write",
+    "stylelint": "stylelint \"src/**/*.less\"",
+    "stylelint:fix": "npm run stylelint -- --fix"
   },
   "dependencies": {
     "@material-tailwind/react": "^2.1.2",
