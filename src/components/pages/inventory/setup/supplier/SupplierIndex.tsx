@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import InventoryLeftSideBar from '../../../../layouts/InventoryLeftSideBar';
+// import InventoryLeftSideBar from '../../../../layouts/InventoryLeftSideBar';
 import { useSelector } from 'react-redux';
 import { type RootState } from '../../../../../redux/store/store';
 
@@ -9,9 +9,7 @@ const SupplierIndex = () => {
     <>
       <div>
         <div className="">
-          <div className="w-1/8">
-            <InventoryLeftSideBar />
-          </div>
+          <div className="w-1/8">{/* <InventoryLeftSideBar /> */}</div>
           <div className={`${isOpen ? 'ml-56 w-3/4' : 'ml-6 w-96'}`}>
             {/* <div className="p-10 w-full ..."> */}
             <table className="w-full text-sm text-gray-500">

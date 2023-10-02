@@ -10,7 +10,7 @@ import SubMenu from 'antd/es/menu/SubMenu';
 import { Link } from 'react-router-dom';
 import Title from 'antd/es/typography/Title';
 import { Footer } from 'antd/es/layout/layout';
-import BreadcrambsIndex from '../Breadcrambs/BreadcrambsIndex';
+// import BreadcrambsIndex from '../Breadcrambs/BreadcrambsIndex';
 
 const { Header, Content, Sider } = Layout;
 // const menu = [{ key: 'aa', label: 'Home' }];
@@ -51,14 +51,14 @@ const Sidebar: React.FC = () => {
   //   setShow(true);
   // };
 
-  const breadcrumbData = [
-    {
-      home: 'Home',
-      label: 'Supplier Setup',
-      link: '/supplier-setup',
-      list: 'List',
-    },
-  ];
+  // const breadcrumbData = [
+  //   {
+  //     home: 'Home',
+  //     label: 'Supplier Setup',
+  //     link: '/supplier-setup',
+  //     list: 'List',
+  //   },
+  // ];
 
   return (
     <Layout>
@@ -88,7 +88,7 @@ const Sidebar: React.FC = () => {
 
         <Layout>
           <Content style={{ padding: '0 30px' }}>
-            <BreadcrambsIndex {...breadcrumbData[0]} />
+            {/* <BreadcrambsIndex {...breadcrumbData[0]} /> */}
             <div style={{ background: '#fff', padding: 24, minHeight: 580 }}>
               {/* <AppRoutes /> */}
             </div>

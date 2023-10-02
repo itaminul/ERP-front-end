@@ -171,3 +171,5 @@
 // };
 
 // export default CreateSupplier;
+
+export {};

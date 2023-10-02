@@ -6,7 +6,7 @@ import {
   // createBrowserRouter,
 } from 'react-router-dom';
 import Dahsbord from '../layouts/Dashbord';
-import SupSetupIndex from '../pages/inventory/setup/supplier/SupSetupIndex';
+// import SupSetupIndex from '../pages/inventory/setup/supplier/SupSetupIndex';
 // import Login from '../layouts/Login';
 // import AboutIndex from '../AboutIndex';
 // import Contact from '../Contact';
@@ -52,8 +52,8 @@ const AppRoutes = () => {
     <>
       <Routes>
         <Route path="dahsboard" element={<Dahsbord />} />
-        <Route path="/supplier" element={<SupSetupIndex />} />
-        <Route path="/newsupplier" element={<SupSetupIndex />} />
+        {/* <Route path="/supplier" element={<SupSetupIndex />} /> */}
+        {/* <Route path="/newsupplier" element={<SupSetupIndex />} /> */}
       </Routes>
     </>
   );

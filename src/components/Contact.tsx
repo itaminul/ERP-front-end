@@ -1,13 +1,11 @@
 import { useSelector } from 'react-redux';
-import DrawerSideBar from './layouts/DrawerSidebar';
+// import DrawerSideBar from './layouts/DrawerSidebar';
 import { type RootState } from '../redux/store/store';
 const Contact = () => {
   const isOpen = useSelector((state: RootState) => state.menu.isOpen);
   return (
     <>
-      <div className="">
-        <DrawerSideBar />
-      </div>
+      <div className="">{/* <DrawerSideBar /> */}</div>
       <div className={`${isOpen ? 'ml-80' : 'ml-28'}`}>
         <nav
           className="flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700"
