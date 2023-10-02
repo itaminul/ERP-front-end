@@ -50,8 +50,6 @@ const EditNewSupplier: React.FC<UpdateComponentProps> = ({
         featchCountrys();
     }, [])
     const [countries, setCountries] = useState<CountryData[] | null>(null)
-    // Initialize the selected option value from the record
-    //   const [selectedOption, setSelectedOption] = useState(formData?.countryId);
 
     const featchCountrys = async () => {
         try {
