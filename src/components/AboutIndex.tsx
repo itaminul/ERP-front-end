@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import services, { API_BASE_URL } from "../services";
 
 interface EmployeeData {
   id: number;
@@ -18,7 +19,7 @@ const AboutIndex = () => {
 
     const accessToken = localStorage.getItem("accessToken");
     try {
-      const response = await fetch("http://localhost:9007/employee-info", {
+      const response = await fetch(API_BASE_URL + services.employeeInfo, {
         method: "GET",
         headers: {
           //'Content-Type': 'multipart/formdata',

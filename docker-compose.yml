@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  react-app:
+    build: . # Dockerfile's path
+    container_name: react-app
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - mynetwork
+    volumes:
+      - ./:/app
+    env_file:
+      - .env
+
+networks:
+  mynetwork:
+    external: true

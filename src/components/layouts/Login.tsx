@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import services, { API_BASE_URL } from "../../services";
 interface LoginProps {
   onLogin: (username: string, password: string) => void;
 }
@@ -15,7 +16,7 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:9007/user/login", {
+      const response = await fetch(API_BASE_URL + services.login, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
