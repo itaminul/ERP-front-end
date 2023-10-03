@@ -1,4 +1,4 @@
-import HrLeftSideBar from "../../layouts/HrLeftSideBar";
+import HrLeftSideBar from '../../layouts/HrLeftSideBar';
 
 const HrIndex = () => {
   return (

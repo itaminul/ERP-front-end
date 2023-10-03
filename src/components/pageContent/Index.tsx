@@ -1,14 +1,11 @@
-import AppRoutes from "../router/AppRoutes";
+// import AppRoutes from '../router/AppRoutes';
 
 const PageContent = () => {
-    return(
-        <>
-         <div className="PageContent">
-         {/* <AppRoutes />         */}
-        </div>
-       
-        </>
-    )
-}  
+  return (
+    <>
+      <div className="PageContent">{/* <AppRoutes />         */}</div>
+    </>
+  );
+};
 
 export default PageContent;

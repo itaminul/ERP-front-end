@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const LeftSidebar = () => {
   const [show, setShow] = useState(false);
@@ -20,8 +20,8 @@ const LeftSidebar = () => {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            clip-rule="evenodd"
-            fill-rule="evenodd"
+            clipRule="evenodd"
+            fillRule="evenodd"
             d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
           ></path>
         </svg>
@@ -52,9 +52,9 @@ const LeftSidebar = () => {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             ></path>
           </svg>
           <span className="sr-only">Close menu</span>
@@ -101,23 +101,25 @@ const LeftSidebar = () => {
                 <svg
                   className="w-3 h-3"
                   aria-hidden="true"
-                  onClick={() => setShow(!show)}
+                  onClick={() => {
+                    setShow(!show);
+                  }}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 10 6"
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="m1 1 4 4 4-4"
                   />
                 </svg>
               </button>
               <ul
                 id="dropdown-example"
-                style={show ? { display: "block" } : { display: "none" }}
+                style={show ? { display: 'block' } : { display: 'none' }}
                 className=""
               >
                 <li>
@@ -234,9 +236,9 @@ const LeftSidebar = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"
                   />
                 </svg>
@@ -261,9 +263,9 @@ const LeftSidebar = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M9 1v16M1 9h16"
                   />
                 </svg>
@@ -280,9 +282,9 @@ const LeftSidebar = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M9 1v16M1 9h16"
                   />
                 </svg>
@@ -299,9 +301,9 @@ const LeftSidebar = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M9 1v16M1 9h16"
                   />
                 </svg>
@@ -319,9 +321,9 @@ const LeftSidebar = () => {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M9 1v16M1 9h16"
                 />
               </svg>
@@ -339,9 +341,9 @@ const LeftSidebar = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M9 1v16M1 9h16"
                   />
                 </svg>
@@ -358,9 +360,9 @@ const LeftSidebar = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M9 1v16M1 9h16"
                   />
                 </svg>
@@ -377,9 +379,9 @@ const LeftSidebar = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M9 1v16M1 9h16"
                   />
                 </svg>
@@ -396,9 +398,9 @@ const LeftSidebar = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M9 1v16M1 9h16"
                   />
                 </svg>
@@ -416,9 +418,9 @@ const LeftSidebar = () => {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M9 1v16M1 9h16"
                 />
               </svg>
@@ -436,9 +438,9 @@ const LeftSidebar = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M9 1v16M1 9h16"
                   />
                 </svg>
@@ -455,9 +457,9 @@ const LeftSidebar = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M9 1v16M1 9h16"
                   />
                 </svg>
@@ -474,9 +476,9 @@ const LeftSidebar = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M9 1v16M1 9h16"
                   />
                 </svg>
@@ -493,9 +495,9 @@ const LeftSidebar = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M9 1v16M1 9h16"
                   />
                 </svg>

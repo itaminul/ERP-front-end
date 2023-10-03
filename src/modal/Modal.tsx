@@ -1,4 +1,4 @@
-import { FC, ReactElement } from "react";
+import { type FC, type ReactElement } from 'react';
 
 interface ModalProps {
   open: boolean;
@@ -17,8 +17,8 @@ export default function Modal(props: ModalProps): ReturnType<FC> {
       <div
         id="extralarge-modal"
         aria-hidden="true"
-        className={`${"modal"} ${
-          props.open ? "display" : "hidden"
+        className={`${'modal'} ${
+          props.open ? 'display' : 'hidden'
         }  fixed top-0 left-0 right-0 z-50  w-full p-4 ${
           props.modalPadding
         } overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full`}
@@ -40,9 +40,9 @@ export default function Modal(props: ModalProps): ReturnType<FC> {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
                 />
               </svg>
