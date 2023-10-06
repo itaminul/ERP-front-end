@@ -25,6 +25,7 @@ import TestForm from './components/TestForm';
 import NSup from './components/pages/inventory/setup/supplier/NSup';
 import './App.css';
 import SupplierSetupIndex from './components/pages/inventory/setup/supplier/suppliersetup/SupplierSetupIndex';
+import ItemIndex from './components/pages/inventory/setup/item/ItemIndex';
 const Router = createBrowserRouter([
   { path: '/', element: <Login /> },
   { path: '/dahsboard', element: <Dahsbord /> },
@@ -48,6 +49,7 @@ const Router = createBrowserRouter([
   { path: '/nsup', element: <NSup /> },
   { path: '/testform', element: <TestForm /> },
   { path: '/supplier2', element: <SupplierSetupIndex /> },
+  { path: '/item-setup', element: <ItemIndex /> },
 
   // not found route
   { path: '*', element: <NotFound /> },

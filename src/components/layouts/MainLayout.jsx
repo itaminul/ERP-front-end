@@ -24,7 +24,7 @@ const Sidebar = () => {
         mode="vertical"
         theme="dark"
         selectedKeys={[selectedMenuItem]}
-        onClick={({ key }) => handleMenuItemClick(key.toString())}
+        onClick={({ key }) => { handleMenuItemClick(key.toString()); }}
       >
         <Menu.Item key="dashboard" icon={<UserOutlined />}>
           <Link to="/dashboard">Dashboard</Link>

@@ -83,6 +83,11 @@ const Sidebar: React.FC = () => {
                 <Link to="/supplier-setup">Supplier</Link>
               </Menu.Item>
             </SubMenu>
+            <SubMenu key="sub2" title="Item">
+              <Menu.Item key="2">
+                <Link to="/item-setup">Item Setup</Link>
+              </Menu.Item>
+            </SubMenu>
           </Menu>
         </Sider>
 
