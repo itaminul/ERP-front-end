@@ -1,13 +1,25 @@
-import Sidebar from '../../../inventory/setup/item/ItemTable';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setBreadcrumbs } from '../../../../../redux/features/breadcrumbSlice';
 import ItemTable from './ItemTable';
 
 const ItemIndex = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(
+      setBreadcrumbs([
+        {
+          home: 'Dashboard',
+          homePath: '/dashboard',
+          label: 'Item List',
+          path: '/set-item',
+        },
+      ])
+    );
+  }, [dispatch]);
   return (
     <>
-      <Sidebar />
-      <div style={{ marginLeft: '250px', marginTop: '-580px', minHeight: 580 }}>
-        <ItemTable />
-      </div>
+      <ItemTable />
     </>
   );
 };
