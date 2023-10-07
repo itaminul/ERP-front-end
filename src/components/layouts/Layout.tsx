@@ -10,8 +10,8 @@ const { Header, Content, Sider } = Layout;
 interface PrvateRouteProps {
   children: React.ReactNode;
 }
-// eslint-disable-next-line react/prop-types
-const AppLayout: React.FC<PrvateRouteProps> = ({ children }) => {
+
+function AppLayout({ children }: PrvateRouteProps) {
   const navigate = useNavigate();
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
 
@@ -38,9 +38,8 @@ const AppLayout: React.FC<PrvateRouteProps> = ({ children }) => {
     setSelectedKeys([e.key]);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  const handleSubMenuOpenChange = (openKeys: string[]) => {
-    setOpenKeys(openKeys);
+  const handleSubMenuOpenChange = (openKeysShow: string[]) => {
+    setOpenKeys(openKeysShow);
   };
   // locout
   const handleLogout = () => {
@@ -113,6 +112,6 @@ const AppLayout: React.FC<PrvateRouteProps> = ({ children }) => {
       <Footer style={{ textAlign: 'center' }}>Footer</Footer>
     </Layout>
   );
-};
+}
 
 export default AppLayout;
