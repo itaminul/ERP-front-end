@@ -1,4 +1,3 @@
-// Breadcrumbs.tsx
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Breadcrumb, Layout } from 'antd';
@@ -16,8 +15,7 @@ const Breadcrumbs: React.FC = () => {
       {isAuthenticated && (
         <Layout>
           {breadcrumbs.map((breadcrumb) => (
-            // eslint-disable-next-line react/jsx-key
-            <Breadcrumb style={{ margin: '16px 0' }}>
+            <Breadcrumb key={breadcrumb.label} style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>
                 <Link to={breadcrumb.homePath}>{breadcrumb.home}</Link>
               </Breadcrumb.Item>
