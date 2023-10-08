@@ -1,4 +1,3 @@
-// itemsApi.ts
 import { API_BASE_URL } from '@/endpoints';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 interface DataType {
@@ -6,8 +5,7 @@ interface DataType {
   itemName: string;
   itemDescription: string;
 }
-// const baseUrl = `${process.env.REACT_APP_API_ENDPOINT}`;
-const accessToken = localStorage.getItem('accessToken'); // Replace with token retrieval logic
+const accessToken = localStorage.getItem('accessToken');
 export const itemsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: API_BASE_URL,
@@ -17,13 +15,12 @@ export const itemsApi = createApi({
       }
       return headers;
     },
-  }), // Base URL of  NestJS API
+  }),
+
   endpoints: (builder) => ({
-    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
-    getItems: builder.query<DataType[], void>({
-      query: () => 'items', // Replace 'items' with actual endpoint
+    getItems: builder.query({
+      query: () => 'items',
       transformResponse: (response: any) => {
-        // Format the response data here
         const formattedData = response.results?.map((item: any) => ({
           id: item.id,
           itemName: item.itemName,

@@ -1,15 +1,13 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-// LoginPage.jsx
-import { useState } from 'react';
 import { Button, Card, Form, Input, message } from 'antd';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
-  const onFinish = async (values: any) => {
+  const loginFormSubmit = async (values: any): Promise<void> => {
     try {
       const { usernmae, password } = values;
       setLoading(true);
@@ -35,12 +33,14 @@ const LoginPage = () => {
         navigate('/dashboard');
         window.location.reload();
       }, 1000);
-
-      // console.log("login");
     } catch (error) {
       console.log('error', error);
     }
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -55,7 +55,7 @@ const LoginPage = () => {
           title="Login"
           style={{ width: 300, textAlign: 'center', marginTop: 150 }}
         >
-          <Form name="login-form" onFinish={onFinish}>
+          <Form name="login-form" onFinish={loginFormSubmit}>
             <Form.Item
               name="usernmae"
               rules={[

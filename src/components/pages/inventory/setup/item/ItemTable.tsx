@@ -15,7 +15,6 @@ interface DataType {
 const ItemTable = () => {
   const { data, isLoading, isError } = useGetItemsQuery();
   const [createModalVisible, setCreateModalVisible] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [editModalVisible, setEditModalVisible] = useState(false);
   const [selectedData, setSelectedData] = useState<any | null>(null);
   const columns: ColumnsType<DataType> = [

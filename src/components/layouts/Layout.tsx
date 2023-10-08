@@ -41,7 +41,7 @@ function AppLayout({ children }: PrvateRouteProps) {
   const handleSubMenuOpenChange = (openKeysShow: string[]) => {
     setOpenKeys(openKeysShow);
   };
-  // locout
+  // logout
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
     localStorage.setItem('isAuthenticated', 'false');
