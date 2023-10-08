@@ -8,11 +8,12 @@ export const WEB_BASE_URL =
 // Memoize the checkUniqueValues function
 const memoizedCheckUniqueValues = memoize(checkUniqueValues);
 
-const services = {
+const endpoints = {
   employeeInfo: '/employee-info',
   login: '/user/login',
+  inventoryItemSetup: '/inventory-item-setup',
 };
 
-memoizedCheckUniqueValues(services); // Calls the function and caches the result
+memoizedCheckUniqueValues(endpoints); // Calls the function and caches the result
 
-export default services;
+export default endpoints;

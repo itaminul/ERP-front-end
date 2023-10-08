@@ -1,0 +1,12 @@
+/* styles.css */
+.ant-menu-inline > .ant-menu-item-selected,
+.ant-menu-inline > .ant-menu-submenu-selected {
+  background-color: #757574; /* Change this to your desired color */
+  color: #fff; /* Change this to your desired text color */
+}
+
+
+.ant-menu-inline > .ant-menu-item-selected a,
+.ant-menu-inline > .ant-menu-submenu-selected a {
+  color: #fff; /* Change this to your desired text color */
+}
