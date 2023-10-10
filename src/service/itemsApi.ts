@@ -1,4 +1,4 @@
-import { API_BASE_URL } from '@/endpoints';
+import { API_BASE_URL } from '../endpoints';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 interface DataType {
   key: React.Key;
@@ -19,7 +19,7 @@ export const itemsApi = createApi({
 
   endpoints: (builder) => ({
     getItems: builder.query({
-      query: () => 'items',
+      query: () => 'inventory-item-setup',
       transformResponse: (response: any) => {
         const formattedData = response.results?.map((item: any) => ({
           id: item.id,
@@ -32,7 +32,7 @@ export const itemsApi = createApi({
 
     createItem: builder.mutation<DataType, Partial<DataType>>({
       query: (newItem) => ({
-        url: 'items',
+        url: 'inventory-item-setup',
         method: 'POST',
         body: newItem,
       }),

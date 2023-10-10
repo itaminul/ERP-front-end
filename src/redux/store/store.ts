@@ -4,6 +4,7 @@ import toggleReducer from '../features/toggleSlice';
 import menuReducer from '../features/menuSlice';
 import modalReducer from '../features/modalSlice';
 import breadcrumbReducer from '../features/breadcrumbSlice';
+import { itemsApi } from '../../service/itemsApi';
 export const store = configureStore({
   reducer: {
     breadcrumbs: breadcrumbReducer,
@@ -11,7 +12,10 @@ export const store = configureStore({
     toggle: toggleReducer,
     menu: menuReducer,
     modal: modalReducer,
+    [itemsApi.reducerPath]: itemsApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(itemsApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

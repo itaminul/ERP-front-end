@@ -4,7 +4,7 @@ import { Button } from 'antd';
 import { useState } from 'react';
 import CreateItem from './CreateItem';
 import UpdateItem from './UpdateItem';
-import { useGetItemsQuery } from '../../../../service/itemsApi';
+import { useGetItemsQuery } from '../../../../../service/itemsApi';
 
 interface DataType {
   key: React.Key;
@@ -13,10 +13,12 @@ interface DataType {
 }
 
 const ItemTable = () => {
-  const { data, isLoading, isError } = useGetItemsQuery();
+  const { data, isLoading, isError } = useGetItemsQuery({
+    start: '10-10-2023',
+    end: '10-10-2023',
+  });
   const [createModalVisible, setCreateModalVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
-  const [selectedData, setSelectedData] = useState<any | null>(null);
   const columns: ColumnsType<DataType> = [
     {
       title: 'Item Name',
@@ -63,13 +65,10 @@ const ItemTable = () => {
     setCreateModalVisible(true);
   };
 
-  const handleSaveCreate = (newData: any) => {};
-
   const handleEdit = (record: any) => {
-    setSelectedData(record);
     setEditModalVisible(true);
   };
-  console.log('selected data', selectedData);
+  console.log('selected data', data);
 
   return (
     <>
@@ -100,7 +99,6 @@ const ItemTable = () => {
         onCancel={() => {
           setCreateModalVisible(false);
         }}
-        onSave={handleSaveCreate}
       />
 
       <UpdateItem
@@ -109,7 +107,6 @@ const ItemTable = () => {
         onCancel={() => {
           setEditModalVisible(false);
         }}
-        data={setSelectedData}
       />
     </>
   );

@@ -5,10 +5,9 @@ interface ItemProps {
   title: string;
   open: boolean;
   onCancel: () => void;
-  data: any;
 }
 // eslint-disable-next-line react/prop-types
-const UpdateItem: React.FC<ItemProps> = ({ title, open, onCancel, data }) => {
+const UpdateItem: React.FC<ItemProps> = ({ title, open, onCancel }) => {
   const [form] = Form.useForm();
 
   return (
