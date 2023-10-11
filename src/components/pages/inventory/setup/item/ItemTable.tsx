@@ -13,10 +13,7 @@ interface DataType {
 }
 
 const ItemTable = () => {
-  const { data, isLoading, isError } = useGetItemsQuery({
-    start: '10-10-2023',
-    end: '10-10-2023',
-  });
+  const { data, isLoading, isError } = useGetItemsQuery();
   const [createModalVisible, setCreateModalVisible] = useState(false);
   const [editModalVisible, setEditModalVisible] = useState(false);
   const columns: ColumnsType<DataType> = [

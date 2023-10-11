@@ -1,10 +1,11 @@
 import { API_BASE_URL } from '../endpoints';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-interface DataType {
+export interface DataType {
   key: React.Key;
   itemName: string;
   itemDescription: string;
 }
+
 const accessToken = localStorage.getItem('accessToken');
 export const itemsApi = createApi({
   baseQuery: fetchBaseQuery({
@@ -18,7 +19,8 @@ export const itemsApi = createApi({
   }),
 
   endpoints: (builder) => ({
-    getItems: builder.query({
+    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+    getItems: builder.query<DataType[], void>({
       query: () => 'inventory-item-setup',
       transformResponse: (response: any) => {
         const formattedData = response.results?.map((item: any) => ({

@@ -12,6 +12,7 @@ const endpoints = {
   employeeInfo: '/employee-info',
   login: '/user/login',
   inventoryItemSetup: '/inventory-item-setup',
+  inventorySupplierSetup: '/suppliers',
 };
 
 memoizedCheckUniqueValues(endpoints); // Calls the function and caches the result
