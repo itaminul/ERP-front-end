@@ -12,7 +12,7 @@ const LoginPage = () => {
       const { usernmae, password } = values;
       setLoading(true);
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/user/login`,
+        `${process.env.REACT_APP_API_ENDPOINT}/user/login`,
         {
           method: 'POST',
           headers: {
