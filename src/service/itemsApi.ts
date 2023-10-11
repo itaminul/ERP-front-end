@@ -5,7 +5,8 @@ interface DataType {
   itemName: string;
   itemDescription: string;
 }
-const accessToken = localStorage.getItem('accessToken');
+// const baseUrl = `${process.env.REACT_APP_API_ENDPOINT}`;
+const accessToken = localStorage.getItem('accessToken'); // Replace with token retrieval logic
 export const itemsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: API_BASE_URL,
@@ -16,11 +17,11 @@ export const itemsApi = createApi({
       return headers;
     },
   }),
-
   endpoints: (builder) => ({
     getItems: builder.query({
       query: () => 'inventory-item-setup',
       transformResponse: (response: any) => {
+        // Format the response data here
         const formattedData = response.results?.map((item: any) => ({
           id: item.id,
           itemName: item.itemName,
