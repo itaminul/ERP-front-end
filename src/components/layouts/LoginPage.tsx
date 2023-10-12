@@ -3,22 +3,25 @@ import { Button, Card, Form, Input, message } from 'antd';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+interface LoginProps {
+  username: string;
+  password: string;
+}
 const LoginPage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const loginFormSubmit = async (values: any): Promise<void> => {
+  const loginFormSubmit = async ({ username, password }: LoginProps) => {
     try {
-      const { usernmae, password } = values;
       setLoading(true);
       const response = await fetch(
-        `${process.env.REACT_APP_API_ENDPOINT}/user/login`,
+        `${process.env.REACT_APP_API_URL}/user/login`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ usernmae, password }),
+          body: JSON.stringify({ username, password }),
         }
       );
 
@@ -57,7 +60,7 @@ const LoginPage = () => {
         >
           <Form name="login-form" onFinish={loginFormSubmit}>
             <Form.Item
-              name="usernmae"
+              name="username"
               rules={[
                 { required: true, message: 'Please enter your username!' },
               ]}

@@ -7,6 +7,7 @@ interface DataType {
 }
 // const baseUrl = `${process.env.REACT_APP_API_ENDPOINT}`;
 const accessToken = localStorage.getItem('accessToken'); // Replace with token retrieval logic
+console.log('accessToken', accessToken);
 export const itemsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: API_BASE_URL,
@@ -27,6 +28,7 @@ export const itemsApi = createApi({
           itemName: item.itemName,
           itemDescription: item.itemDescription,
         }));
+        console.log(' formattedData ', formattedData);
         return formattedData;
       },
     }),
