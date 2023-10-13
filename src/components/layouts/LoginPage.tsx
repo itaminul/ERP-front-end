@@ -3,7 +3,7 @@ import { Button, Card, Form, Input, message } from 'antd';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-interface LoginProps {
+interface Credential {
   username: string;
   password: string;
 }
@@ -11,7 +11,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const loginFormSubmit = async ({ username, password }: LoginProps) => {
+  const loginFormSubmit = async ({ username, password }: Credential) => {
     try {
       setLoading(true);
       const response = await fetch(

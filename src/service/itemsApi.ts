@@ -5,9 +5,8 @@ interface DataType {
   itemName: string;
   itemDescription: string;
 }
-// const baseUrl = `${process.env.REACT_APP_API_ENDPOINT}`;
-const accessToken = localStorage.getItem('accessToken'); // Replace with token retrieval logic
-console.log('accessToken', accessToken);
+const accessToken = localStorage.getItem('accessToken');
+
 export const itemsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: API_BASE_URL,
@@ -19,16 +18,15 @@ export const itemsApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getItems: builder.query({
+    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+    getItems: builder.query<DataType[], void>({
       query: () => 'inventory-item-setup',
       transformResponse: (response: any) => {
-        // Format the response data here
         const formattedData = response.results?.map((item: any) => ({
           id: item.id,
           itemName: item.itemName,
           itemDescription: item.itemDescription,
         }));
-        console.log(' formattedData ', formattedData);
         return formattedData;
       },
     }),
