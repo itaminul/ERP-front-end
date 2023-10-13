@@ -11,45 +11,31 @@ import {
   message,
 } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import React from 'react';
 import { useCreateItemMutation } from '../../../../../service/itemsApi';
+import { type CreateItemsProps, type Items } from './ItemTypes';
 const { Option } = Select;
 
-interface CreateModalProps {
-  title: string;
-  visible: boolean;
-  onCancel: () => void;
-}
-
-const CreateItem: React.FC<CreateModalProps> = ({
-  title,
-  visible,
-  onCancel,
-}) => {
+const CreateItem = ({ title, visible, onCancel }: CreateItemsProps) => {
   const [form] = Form.useForm();
   const [createItem] = useCreateItemMutation();
 
-  const onFinish = async (values: any) => {
+  const onFinish: any = async (values: Items) => {
     try {
-      const newItem = {
+      const itemFormat = {
         itemName: values.itemName,
         itemDescription: values.itemDescription,
-        itemCode: values.itemCode,
         modelNo: values.modelNo,
-        costPrice: Number(values.costPrice),
+        itemCode: values.itemCode,
+        costPrise: Number(values.costPrice),
         salePrice: Number(values.salePrice),
-        manufactureDate: new Date(values.manufactureDate).toLocaleDateString(),
-        expireDate: new Date(values.expireDate).toLocaleDateString(),
         taxRate: Number(values.taxRate),
         reorderLabel: Number(values.reorderLabel),
-        itemImage: values.itemImage,
-        remarks: values.remarks,
-        supplierId: Number(values.supplierId),
         itemGroupId: Number(values.itemGroupId),
+        supplierId: Number(values.supplierId),
+        manufactureDate: new Date(values.manufactureDate).toLocaleDateString(),
+        expireDate: new Date(values.expireDate).toLocaleDateString(),
       };
-
-      const response = await createItem(newItem);
-      console.log('newItem', newItem);
+      const response = await createItem(itemFormat);
       if (response != null) {
         setTimeout(() => {
           void message.success('Created Successfully');
@@ -67,11 +53,6 @@ const CreateItem: React.FC<CreateModalProps> = ({
   const disabledDate = (current: any) => {
     const today = new Date();
     return Boolean(current) && current > today;
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    // Handle form validation errors if needed
-    console.error('Form validation failed:', errorInfo);
   };
   return (
     <>
@@ -92,9 +73,7 @@ const CreateItem: React.FC<CreateModalProps> = ({
       >
         <Form
           form={form}
-          // eslint-disable-next-line @typescript-eslint/no-misused-promises
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
           layout="vertical"
           autoComplete="off"
         >

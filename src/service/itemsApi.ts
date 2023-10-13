@@ -6,6 +6,7 @@ interface DataType {
   itemDescription: string;
 }
 const accessToken = localStorage.getItem('accessToken');
+
 export const itemsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: API_BASE_URL,
@@ -16,9 +17,9 @@ export const itemsApi = createApi({
       return headers;
     },
   }),
-
   endpoints: (builder) => ({
-    getItems: builder.query({
+    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+    getItems: builder.query<DataType[], void>({
       query: () => 'inventory-item-setup',
       transformResponse: (response: any) => {
         const formattedData = response.results?.map((item: any) => ({
