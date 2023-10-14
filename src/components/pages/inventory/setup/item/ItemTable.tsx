@@ -65,6 +65,8 @@ const ItemTable = () => {
   const handleEdit = (record: any) => {
     setEditModalVisible(true);
   };
+  console.log('selected data', data);
+
   return (
     <>
       <Button
