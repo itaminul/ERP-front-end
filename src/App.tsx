@@ -5,6 +5,7 @@ import { store } from './redux/store/store';
 import AppLayout from './components/layouts/Layout';
 import LoginPage from './components/layouts/LoginPage';
 import ItemIndex from './components/pages/inventory/setup/item/ItemIndex';
+import SupplierIndex from './components/pages/inventory/setup/supplier/SupplierIndex';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/item-setup" element={<ItemIndex />} />
+            <Route path="/suppliers" element={<SupplierIndex />} />
           </Routes>
         </AppLayout>
       </Provider>

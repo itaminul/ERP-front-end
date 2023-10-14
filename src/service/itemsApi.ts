@@ -17,6 +17,7 @@ export const itemsApi = createApi({
       return headers;
     },
   }),
+
   endpoints: (builder) => ({
     // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
     getItems: builder.query<DataType[], void>({

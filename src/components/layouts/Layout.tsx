@@ -77,7 +77,7 @@ function AppLayout({ children }: PrvateRouteProps) {
                   <Link to="/item-setup">Item</Link>
                 </Menu.Item>
                 <Menu.Item key="subItem1-2">
-                  <Link to="/contact">Contact</Link>
+                  <Link to="/suppliers">Supplier</Link>
                 </Menu.Item>
               </Menu.SubMenu>
               <Menu.Item key="about">
