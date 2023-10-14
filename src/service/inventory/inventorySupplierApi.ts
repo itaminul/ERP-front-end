@@ -26,7 +26,6 @@ export const inventorySupplierApi = createApi({
           supplierName: supplier.supplierName,
           supplierDescription: supplier.supplierDescription,
         }));
-        console.log(' RTK query supplier  data ', formattedData);
         return formattedData;
       },
     }),
