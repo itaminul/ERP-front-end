@@ -8,6 +8,7 @@ interface DataType {
 const accessToken = localStorage.getItem('accessToken');
 
 export const itemsApi = createApi({
+  reducerPath: 'itemsApi',
   baseQuery: fetchBaseQuery({
     baseUrl: API_BASE_URL,
     prepareHeaders: (headers) => {

@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-// import Modal from '../../../../../modal/Modal';
-// import UpdateSupplier from './UpdateSupplier';
+import { useGetSuppliersQuery } from '../../../../../service/inventory/inventorySupplierApi';
+import CreateSupplier from './CreateSupplier';
+import UpdateSupplier from './UpdateSupplier';
 
 interface DataType {
   id: number;
@@ -10,43 +11,17 @@ interface DataType {
   supplierName: string;
   supplierDescription: string;
 }
+const SupplierTable = () => {
+  const { data, isLoading, isError } = useGetSuppliersQuery();
+  const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  if (isLoading) {
+    return <>Loading.....</>;
+  }
 
-// const data: DataType[] = [
-//   {
-//     id: 1,
-//     key: '1',
-//     supplierName: 'abc',
-//     supplierDescription: 'def',
-//   },
-//   {
-//     id: 2,
-//     key: '2',
-//     supplierName: 'Jim Green',
-//     supplierDescription: 'London Park',
-//   },
-// ];
-
-// const accessToken = localStorage.getItem('accessToken');
-const SupplierTable: React.FC = () => {
-  // const [previousValue, setPreviousValue] = useState<string>('');
-
-  // console.log('p value', previousValue);
-
-  // const [data, setData] = useState<DataType[]>([]);
-  // const [selectedData, setSelectedData] = useState<DataType | null>(null);
-  // const [recordId, setRecordId] = useState<number | null>(null);
-  // const [isEditModalVisible, setIsEditModalVisible] = useState(false);
-  // const [showModal, setShowModalOpen] = useState(false);
-
-  // const openModal = (record: DataType) => {
-  //   setSelectedData(record);
-  //   setShowModalOpen(true);
-  // };
-
-  // const onClose = () => {
-  //   setShowModalOpen(false);
-  // };
-
+  if (isError) {
+    return <>Error fetching data</>;
+  }
   const columns: ColumnsType<DataType> = [
     {
       title: 'ID',
@@ -77,91 +52,53 @@ const SupplierTable: React.FC = () => {
           <Button
             type="primary"
             onClick={() => {
-              // handleEidt(record);
+              handleEditModalOpen();
             }}
           >
             Edit
           </Button>
         </>
       ),
-      // render: () => (
-      //   <Button type="primary"
-      //     onClick={openModal}
-      //   >Edit</Button>
-      // ),
     },
   ];
 
-  // const handleEidt = (record: DataType) => {
-  //   // console.log('recond', record);
-  //   // setPreviousValue(record.supplierName);
-  //   // const selectedRecond = data.find((record) => record.id === recordId);;
-  //   // setSelectedData(record);
-  //   // setRecordId(record.id);
-  //   // setIsEditModalVisible(true);
-  //   // setShowModalOpen(true);
-  // };
+  function handleCreateModalOpen() {
+    setCreateModalOpen(true);
+  }
 
-  useEffect(() => {
-    // const fetchData = async () => {
-    //   try {
-    //     const response = await fetch(
-    //       `${process.env.REACT_APP_API_URL}/suppliers`,
-    //       {
-    //         method: 'GET',
-    //         headers: {
-    //           'Content-type': 'application/json',
-    //           Authorization: `Bearer ${accessToken}`,
-    //         },
-    //       }
-    //     );
-    //     const jsonData = await response.json();
-    //     const showResult = await jsonData.results;
-    //     setData(showResult);
-    //     console.log('showResult', showResult);
-    //     // setData(showResult.map((row: { supplierName: any; supplierDescription: any; }) =>({supplierName:row.supplierName,supplierDescription:row.supplierDescription })) );
-    //     // setLoading(false);
-    //   } catch (error) {
-    //     console.error('Error fetching data:', error);
-    //   }
-    // };
-    // fetchData();
-  }, []);
-
-  // console.log('data', data);
+  function handleEditModalOpen() {
+    setEditModalOpen(true);
+  }
 
   return (
     <>
+      <Button
+        style={{ float: 'right', marginBottom: '10px' }}
+        onClick={handleCreateModalOpen}
+      >
+        Create
+      </Button>
       <Table
         style={{ width: '90%' }}
         columns={columns}
-        // dataSource={data}
+        dataSource={data}
         scroll={{ x: 1300 }}
       />
-      ;
-      {/* <Modal
-        //  visible={isEditModalVisible}
-        open={showModal}
-        onClose={onClose}
-        title="Update Supplier"
-        modalPadding="px-96"
-        closeButtonPadding="ml-6"
-        modalSize="1000"
-        // recordId={recordId}
-        // initialValues={previousValues}
-        // previousValue={previousValue}
-        toggle={function (): void {
-          throw new Error('Function not implemented.');
+      <CreateSupplier
+        title="Create Supplier"
+        open={createModalOpen}
+        onCancel={() => {
+          setCreateModalOpen(false);
         }}
-      >
-        <UpdateSupplier
-          onClose={onClose}
-          previousValue={previousValue}
-          // initialValues={setSelectedData?.name || ''}
-          visible={false}
-          recordId={recordId}
-        />
-      </Modal> */}
+      />
+      <UpdateSupplier
+        title="Update Supplier"
+        open={editModalOpen}
+        onCancel={() => {
+          setEditModalOpen(false);
+        }}
+      />
+      ;
     </>
   );
 };
