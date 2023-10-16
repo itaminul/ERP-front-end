@@ -32,7 +32,19 @@ export const inventorySupplierApi = createApi({
         return formattedData;
       },
     }),
+
+    createSupplier: builder.mutation<
+      SupplierDataType,
+      Partial<SupplierDataType>
+    >({
+      query: (newItem) => ({
+        url: 'supplier',
+        method: 'POST',
+        body: newItem,
+      }),
+    }),
   }),
 });
 
-export const { useGetSuppliersQuery } = inventorySupplierApi;
+export const { useGetSuppliersQuery, useCreateSupplierMutation } =
+  inventorySupplierApi;
