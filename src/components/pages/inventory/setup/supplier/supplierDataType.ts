@@ -1,6 +1,7 @@
 export interface Suppliers {
-  supplierName: string;
-  supplierDescription: string;
+  supplierName?: string;
+  supplierDescription?: string;
+  countryId: number;
 }
 
 export interface CreateSupplierProps {
