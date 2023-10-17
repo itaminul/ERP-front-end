@@ -7,7 +7,6 @@ interface SupplierDataType {
   supplierDescription: string;
 }
 const accessToken = localStorage.getItem('accessToken');
-
 export const inventorySupplierApi = createApi({
   reducerPath: 'inventorySupplierApi',
   baseQuery: fetchBaseQuery({
@@ -32,7 +31,18 @@ export const inventorySupplierApi = createApi({
         return formattedData;
       },
     }),
+    createSupplier: builder.mutation<
+      SupplierDataType,
+      Partial<SupplierDataType>
+    >({
+      query: (newItem) => ({
+        url: 'suppliers',
+        method: 'POST',
+        body: newItem,
+      }),
+    }),
   }),
 });
 
-export const { useGetSuppliersQuery } = inventorySupplierApi;
+export const { useGetSuppliersQuery, useCreateSupplierMutation } =
+  inventorySupplierApi;
