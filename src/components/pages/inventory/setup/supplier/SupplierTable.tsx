@@ -11,10 +11,12 @@ interface DataType {
   supplierName: string;
   supplierDescription: string;
 }
+
 const SupplierTable = () => {
   const { data, isLoading, isError } = useGetSuppliersQuery();
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const [selectedData, setSelectedData] = useState<DataType | null>(null);
   if (isLoading) {
     return <>Loading.....</>;
   }
@@ -47,12 +49,12 @@ const SupplierTable = () => {
       key: 'operation',
       fixed: 'right',
       width: 100,
-      render: () => (
+      render: (_: string, record: DataType) => (
         <>
           <Button
             type="primary"
             onClick={() => {
-              handleEditModalOpen();
+              showEditModal(record);
             }}
           >
             Edit
@@ -65,11 +67,10 @@ const SupplierTable = () => {
   function handleCreateModalOpen() {
     setCreateModalOpen(true);
   }
-
-  function handleEditModalOpen() {
+  function showEditModal(record: DataType) {
     setEditModalOpen(true);
+    setSelectedData(record);
   }
-
   return (
     <>
       <Button
@@ -94,6 +95,7 @@ const SupplierTable = () => {
       <UpdateSupplier
         title="Update Supplier"
         open={editModalOpen}
+        data={selectedData}
         onCancel={() => {
           setEditModalOpen(false);
         }}
