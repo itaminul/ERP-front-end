@@ -6,6 +6,7 @@ export interface Suppliers {
 export interface EditSupplierProps {
   title: string;
   open: boolean;
+  data: any;
   onCancel: () => void;
 }
 

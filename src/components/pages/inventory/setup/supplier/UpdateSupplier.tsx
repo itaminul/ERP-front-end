@@ -1,8 +1,21 @@
 import { Button, Form, Input, Modal, Select } from 'antd';
 import { type EditSupplierProps } from './editSupplierDataType';
-const { Option } = Select;
-function UpdateSupplier({ title, open, onCancel }: EditSupplierProps) {
+import { useEffect, useState } from 'react';
+import { useGetCountryQuery } from '../../../../../service/countryApi';
+function UpdateSupplier({ title, open, data, onCancel }: EditSupplierProps) {
   const [form] = Form.useForm();
+  const { data: counties } = useGetCountryQuery();
+  const [selectedOption, setSelectedOption] = useState<string | undefined>(
+    undefined
+  );
+
+  const handleSelectChange = (value: string) => {
+    setSelectedOption(value);
+  };
+
+  useEffect(() => {
+    form.setFieldsValue(data);
+  }, [data, form]);
   return (
     <>
       <Modal title={title} open={open} onCancel={onCancel}>
@@ -20,7 +33,7 @@ function UpdateSupplier({ title, open, onCancel }: EditSupplierProps) {
         >
           <Form.Item
             label="Supplier name"
-            name="supplier"
+            name="supplierName"
             rules={[{ required: true, message: 'Please input your supplier!' }]}
           >
             <Input />
@@ -31,12 +44,19 @@ function UpdateSupplier({ title, open, onCancel }: EditSupplierProps) {
           </Form.Item>
           <Form.Item name="countryId" label="Country">
             <Select
-              placeholder="Select a option and change input text above"
-              allowClear
+              style={{ width: 200 }}
+              value={selectedOption}
+              onChange={handleSelectChange}
             >
-              <Option value="1">Bangladesh</Option>
-              <Option value="2">America</Option>
-              <Option value="3">Canada</Option>
+              {counties?.map((option) => (
+                <Select.Option
+                  key={option.id}
+                  value={option.id}
+                  name="countryId"
+                >
+                  {option.countryName}
+                </Select.Option>
+              ))}
             </Select>
           </Form.Item>
 

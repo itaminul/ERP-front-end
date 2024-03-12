@@ -6,6 +6,7 @@ import modalReducer from '../features/modalSlice';
 import breadcrumbReducer from '../features/breadcrumbSlice';
 import { itemsApi } from '../../service/itemsApi';
 import { inventorySupplierApi } from '../../service/inventory/inventorySupplierApi';
+import { countryApi } from '../../service/countryApi';
 const rootReducer = combineReducers({
   breadcrumbs: breadcrumbReducer,
   counter: counterReducer,
@@ -14,12 +15,14 @@ const rootReducer = combineReducers({
   modal: modalReducer,
   [inventorySupplierApi.reducerPath]: inventorySupplierApi.reducer,
   [itemsApi.reducerPath]: itemsApi.reducer,
+  [countryApi.reducerPath]: countryApi.reducer,
 });
 
 const middleware = (getDefaultMiddleware: () => any[]) =>
   getDefaultMiddleware().concat([
     inventorySupplierApi.middleware,
     itemsApi.middleware,
+    countryApi.middleware,
   ]);
 
 export const store = configureStore({
