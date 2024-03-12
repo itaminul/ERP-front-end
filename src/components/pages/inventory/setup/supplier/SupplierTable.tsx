@@ -52,7 +52,7 @@ const SupplierTable = () => {
           <Button
             type="primary"
             onClick={() => {
-              handleEditModalOpen();
+              showEditModal();
             }}
           >
             Edit
@@ -65,11 +65,9 @@ const SupplierTable = () => {
   function handleCreateModalOpen() {
     setCreateModalOpen(true);
   }
-
-  function handleEditModalOpen() {
+  function showEditModal() {
     setEditModalOpen(true);
   }
-
   return (
     <>
       <Button
